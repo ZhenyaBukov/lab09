@@ -1,3 +1,4 @@
+<фрагмент_вставки_значка>
 $ export GITHUB_USERNAME=ZhenyaBukov
 
 $ cd ${GITHUB_USERNAME}/workspace
