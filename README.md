@@ -1,336 +1,254 @@
 $ export GITHUB_USERNAME=ZhenyaBukov
-$ export GITHUB_EMAIL=zhenya.bukov.06@mail.ru
-$ export GITHUB_TOKEN=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
-$ alias edit=nano
-
 
 $ cd ${GITHUB_USERNAME}/workspace
-$ workspace % source scripts/activate
+/ZhenyaBukov/workspace$ pushd .
+~/ZhenyaBukov/workspace ~/ZhenyaBukov/workspace
+/ZhenyaBukov/workspace$ source scripts/activate
+
+/ZhenyaBukov/workspace$ git clone git@github.com:ZhenyaBukov/lab02.git projects/lab03
+Клонирование в «projects/lab03»...
+remote: Enumerating objects: 2936, done.
+remote: Counting objects: 100% (2936/2936), done.
+remote: Compressing objects: 100% (2244/2244), done.
+remote: Total 2936 (delta 523), reused 2925 (delta 519), pack-reused 0 (from 0)
+Получение объектов: 100% (2936/2936), 13.45 МиБ | 1.87 МиБ/с, готово.
+Определение изменений: 100% (523/523), готово.
+/ZhenyaBukov/workspace$ cd projects/lab03
+/ZhenyaBukov/workspace$ git remote remove origin
+/ZhenyaBukov/workspace/projects/lab03$ git remote add origin git@github.com:ZhenyaBukov/lab03.git
+
+/ZhenyaBukov/workspace/projects/lab03$ g++ -std=c++11 -I./include -c sources/print.cpp
+/ZhenyaBukov/workspace/projects/lab03$ ls print.o
+print.o
+/ZhenyaBukov/workspace/projects/lab03$ nm print.o | grep print
+0000000000000000 T _Z5printRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERSo
+000000000000002a T _Z5printRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERSt14basic_ofstreamIcS2_E
+/ZhenyaBukov/workspace/projects/lab03$ ar rvs print.a print.o
+ar: создаётся print.a
+a - print.o
+/ZhenyaBukov/workspace/projects/lab03$ file print.a
+print.a: current ar archive
+/ZhenyaBukov/workspace/projects/lab03$ g++ -std=c++11 -I./include -c examples/example1.cpp
+/ZhenyaBukov/workspace/projects/lab03$ ls example1.o
+example1.o
+/ZhenyaBukov/workspace/projects/lab03$ g++ example1.o print.a -o example
+/ZhenyaBukov/workspace/projects/lab03$ ./example1 && echo
+hello
+
+/ZhenyaBukov/workspace/projects/lab03$ g++ -std=c++11 -I./include -c examples/example2.cpp
+/ZhenyaBukov/workspace/projects/lab03$ nm example2.o
+0000000000000000 V DW.ref.__gxx_personality_v0
+                 U __gxx_personality_v0
+0000000000000000 T main
+                 U __stack_chk_fail
+                 U _Unwind_Resume
+                 U _Z5printRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERSt14basic_ofstreamIcS2_E
+                 U _ZNSt14basic_ofstreamIcSt11char_traitsIcEEC1EPKcSt13_Ios_Openmode
+                 U _ZNSt14basic_ofstreamIcSt11char_traitsIcEED1Ev
+0000000000000000 W _ZNSt15__new_allocatorIcED1Ev
+0000000000000000 W _ZNSt15__new_allocatorIcED2Ev
+0000000000000000 n _ZNSt15__new_allocatorIcED5Ev
+                 U _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC1EPKcRKS3_
+                 U _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev
+                 U _ZSt21ios_base_library_initv
+0000000000000000 r _ZStL19piecewise_construct
+/ZhenyaBukov/workspace/projects/lab03$ g++ example2.o print.a -o example2
+/ZhenyaBukov/workspace/projects/lab03$ ./example2
+/ZhenyaBukov/workspace/projects/lab03$ cat log.txt && echo
+hello
+
+/ZhenyaBukov/workspace/projects/lab03$ rm -rf example1.o example2.o print.o
+/ZhenyaBukov/workspace/projects/lab03$ rm -rf print.a
+/ZhenyaBukov/workspace/projects/lab03$ rm -rf example1 example2
+/ZhenyaBukov/workspace/projects/lab03$ rm -rf log.txt
+
+/ZhenyaBukov/workspace/projects/lab03$ cat > CMakeLists.txt <<EOF
+> cmake_minimum_required(VERSION 3.4)
+project(print)
+EOF
+
+/ZhenyaBukov/workspace/projects/lab03$ cat >> CMakeLists.txt <<EOF
+> set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+EOF
+
+/ZhenyaBukov/workspace/projects/lab03$ cat >> CMakeLists.txt <<EOF
+> add_library(print STATIC \${CMAKE_CURRENT_SOURCE_DIR}/sources/print.cpp)
+EOF
+
+/ZhenyaBukov/workspace/projects/lab03$ cat >> CMakeLists.txt <<EOF
+> include_directories(\${CMAKE_CURRENT_SOURCE_DIR}/include)
+EOF
+
+/ZhenyaBukov/workspace/projects/lab03$ cmake -H. -B_build
+CMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.5 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value or use a ...<max> suffix to tell
+  CMake that the project does not need compatibility with older versions.
 
 
-$ workspace % mkdir ~/.config
-mkdir: /Users/zhenya/.config: File exists
-$ workspace % cat > ~/.config/hub <<EOF
-heredoc> github.com:
-heredoc> - user: ${GITHUB_USERNAME}
-heredoc> oauth_token: ${GITHUB_TOKEN}
-heredoc> protocol: ssh  
-heredoc> EOF
-$ workspace % git config --global hub.protocol https
-fatal: bad config line 1 in file /Users/zhenya/.gitconfig
-$ workspace % git config --global
-fatal: bad config line 1 in file /Users/zhenya/.gitconfig
-$ workspace % cat .gitconfig
-cat: .gitconfig: No such file or directory
-$ workspace % git config --global
-fatal: bad config line 1 in file /Users/zhenya/.gitconfig
-$ workspace % vim /Users/zhenya/.gitconfig 
-$ workspace % git config --global         
-usage: git config [<options>]
+-- The C compiler identification is GNU 13.3.0
+-- The CXX compiler identification is GNU 13.3.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (0.4s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/zhenya/ZhenyaBukov/workspace/projects/lab03/_build
+/ZhenyaBukov/workspace/projects/lab03$ cmake --build _build
+[ 50%] Building CXX object CMakeFiles/print.dir/sources/print.cpp.o
+[100%] Linking CXX static library libprint.a
+[100%] Built target print
 
-Config file location
-    --global              use global config file
-    --system              use system config file
-    --local               use repository config file
-    --worktree            use per-worktree config file
-    -f, --file <file>     use given config file
-    --blob <blob-id>      read config from given blob object
+/ZhenyaBukov/workspace/projects/lab03$ cat >> CMakeLists.txt <<EOF
+> 
+> add_executable(example1 \${CMAKE_CURRENT_SOURCE_DIR}/examples/example1.cpp)
+add_executable(example2 \${CMAKE_CURRENT_SOURCE_DIR}/examples/example2.cpp)
+EOF
 
-Action
-    --get                 get value: name [value-pattern]
-    --get-all             get all values: key [value-pattern]
-    --get-regexp          get values for regexp: name-regex [value-pattern]
-    --get-urlmatch        get value specific for the URL: section[.var] URL
-    --replace-all         replace all matching variables: name value [value-pattern]
-    --add                 add a new variable: name value
-    --unset               remove a variable: name [value-pattern]
-    --unset-all           remove all matches: name [value-pattern]
-    --rename-section      rename section: old-name new-name
-    --remove-section      remove a section: name
-    -l, --list            list all
-    --fixed-value         use string equality when comparing values to 'value-pattern'
-    -e, --edit            open an editor
-    --get-color           find the color configured: slot [default]
-    --get-colorbool       find the color setting: slot [stdout-is-tty]
+/ZhenyaBukov/workspace/projects/lab03$ cat >> CMakeLists.txt <<EOF
+> 
+> target_link_libraries(example1 print)
+target_link_libraries(example2 print)
+EOF
 
-Type
-    -t, --type <type>     value is given this type
-    --bool                value is "true" or "false"
-    --int                 value is decimal number
-    --bool-or-int         value is --bool or --int
-    --bool-or-str         value is --bool or string
-    --path                value is a path (file or directory name)
-    --expiry-date         value is an expiry date
+/ZhenyaBukov/workspace/projects/lab03$ cmake --build _build
+CMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.5 will be removed from a future version of
+  CMake.
 
-Other
-    -z, --null            terminate values with NUL byte
-    --name-only           show variable names only
-    --includes            respect include directives on lookup
-    --show-origin         show origin of config (file, standard input, blob, command line)
-    --show-scope          show scope of config (worktree, local, global, system, command)
-    --default <value>     with --get, use default value when missing entry
+  Update the VERSION argument <min> value or use a ...<max> suffix to tell
+  CMake that the project does not need compatibility with older versions.
 
-    
 
-$ workspace % mkdir projects/lab02 && cd projects/lab02
-mkdir: projects/lab02: File exists
-$ workspace % git init
-Reinitialized existing Git repository in /Users/zhenya/ZhenyaBukov/workspace/.git/
-$ workspace % git config --global user.name ${GITHUB_USERNAME}
-$ workspace % git config --global user.email ${GITHUB_EMAIL}
-$ workspace % git config -e --global
-$ workspace % git remote add origin https://github.com/${GITHUB_USERNAME}/lab02.git 
-error: remote origin already exists.
-$ workspace % git pull origin main  
-remote: Enumerating objects: 7, done.
-remote: Counting objects: 100% (7/7), done.
-remote: Compressing objects: 100% (5/5), done.
-remote: Total 6 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
-Unpacking objects: 100% (6/6), 2.59 KiB | 530.00 KiB/s, done.
-From https://github.com/ZhenyaBukov/lab02
- * branch            main       -> FETCH_HEAD
-   9ace567..44121d8  main       -> origin/main
-hint: You have divergent branches and need to specify how to reconcile them.
-hint: You can do so by running one of the following commands sometime before
-hint: your next pull:
-hint: 
-hint:   git config pull.rebase false  # merge
-hint:   git config pull.rebase true   # rebase
-hint:   git config pull.ff only       # fast-forward only
-hint: 
-hint: You can replace "git config" with "git config --global" to set a default
-hint: preference for all repositories. You can also pass --rebase, --no-rebase,
-hint: or --ff-only on the command line to override the configured default per
-hint: invocation.
-fatal: Need to specify how to reconcile divergent branches.
-$ workspace % touch README.md
-$ workspace % git status
-On branch main
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-	.DS_Store
-	node/
-	projects/
-	scripts/
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/zhenya/ZhenyaBukov/workspace/projects/lab03/_build
+[ 33%] Built target print
+[ 50%] Building CXX object CMakeFiles/example1.dir/examples/example1.cpp.o
+[ 66%] Linking CXX executable example1
+[ 66%] Built target example1
+[ 83%] Building CXX object CMakeFiles/example2.dir/examples/example2.cpp.o
+[100%] Linking CXX executable example2
+[100%] Built target example2
+/ZhenyaBukov/workspace/projects/lab03$ cmake --build _build --target print
+[100%] Built target print
+/ZhenyaBukov/workspace/projects/lab03$ cmake --build _build --target example1
+[ 50%] Built target print
+[100%] Built target example1
+/ZhenyaBukov/workspace/projects/lab03$ cmake --build _build --target example2
+[ 50%] Built target print
+[100%] Built target example2
 
-nothing added to commit but untracked files present (use "git add" to track)
-$ workspace % git log
-commit 3b4b3e950b4abd1bd3485bfae01944dbc8078d8c (HEAD -> main)
-Author: ZhenyaBukov <zhenya.bukov.06@mail.ru>
-Date:   Fri Apr 4 06:17:44 2025 -0700
+/ZhenyaBukov/workspace/projects/lab03$ ls -la _build/libprint.a
+-rw-rw-r-- 1 zhenya zhenya 2246 мая 18 01:26 _build/libprint.a
+/ZhenyaBukov/workspace/projects/lab03$ _build/example1 && echo
+hello
+/ZhenyaBukov/workspace/projects/lab03$ _build/example2
+/ZhenyaBukov/workspace/projects/lab03$ cat log.txt && echo
+hello
+/ZhenyaBukov/workspace/projects/lab03$ rm -rf log.txt
 
-    added README.md
+/ZhenyaBukov/workspace/projects/lab03$ git clone git@github.com:ZhenyaBukov/lab03.git tmp
+Клонирование в «tmp»...
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+Получение объектов: 100% (3/3), готово.
+/ZhenyaBukov/workspace/projects/lab03$ mv -f tmp/CMakeLists.txt .
+mv: не удалось выполнить stat для 'tmp/CMakeLists.txt': Нет такого файла или каталога
+/ZhenyaBukov/workspace/projects/lab03$ rm -rf tmp
 
-commit 9ace56709a316017f673d021a927a442257136ef
-Author: ZhenyaBukov <zhenya.bukov.06@mail.ru>
-Date:   Mon Mar 24 11:17:24 2025 -0700
+/ZhenyaBukov/workspace/projects/lab03$ cat CMakeLists.txt
+cmake_minimum_required(VERSION 3.4)
+project(print)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+add_library(print STATIC ${CMAKE_CURRENT_SOURCE_DIR}/sources/print.cpp)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-    Create .gitignore
+add_executable(example1 ${CMAKE_CURRENT_SOURCE_DIR}/examples/example1.cpp)
+add_executable(example2 ${CMAKE_CURRENT_SOURCE_DIR}/examples/example2.cpp)
 
-commit f445772d1cc42ee7e87fa8f738271b0c1af4234b
-Author: ZhenyaBukov <zhenya.bukov.06@mail.ru>
-Date:   Fri Mar 7 03:46:53 2025 -0800
+target_link_libraries(example1 print)
+target_link_libraries(example2 print)
+/ZhenyaBukov/workspace/projects/lab03$ cmake -H. -B_build -DCMAKE_INSTALL_PREFIX=_install
+CMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.5 will be removed from a future version of
+  CMake.
 
-    Initial commit
-$ workspace % git add README.md
-$ workspace % git commit -m"added REAME.md"
-On branch main
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-	.DS_Store
-	node/
-	projects/
-	scripts/
+  Update the VERSION argument <min> value or use a ...<max> suffix to tell
+  CMake that the project does not need compatibility with older versions.
 
-nothing added to commit but untracked files present (use "git add" to track)
-$ workspace % git push origin main  
-Username for 'https://github.com': ZhenyaBukov
-Password for 'https://ZhenyaBukov@github.com': 
-remote: Support for password authentication was removed on August 13, 2021.
-remote: Please see https://docs.github.com/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls for information on currently recommended modes of authentication.
-fatal: Authentication failed for 'https://github.com/ZhenyaBukov/lab02.git/'
-$ workspace % vim /Users/zhenya/.gitconfig                                        
-$ workspace % git push origin main                                                 
-Username for 'https://github.com': ZhenyaBukov
-Password for 'https://ZhenyaBukov@github.com': 
-remote: Invalid username or password.
-fatal: Authentication failed for 'https://github.com/ZhenyaBukov/lab02.git/'
-$ workspace % vim .git/config        
-$ workspace % vim ~/.config
-$ workspace % vim ~/.config/hub 
-$ workspace % git remote add origin git@github.com:ZhenyaBukov/lab02.git           
-error: remote origin already exists.
-$ workspace % git remote remove origin
-$ workspace % git remote add origin git@github.com:ZhenyaBukov/lab02.git
-$ workspace % git push origin main                                      
-To github.com:ZhenyaBukov/lab02.git
- ! [rejected]        main -> main (non-fast-forward)
-error: failed to push some refs to 'github.com:ZhenyaBukov/lab02.git'
-hint: Updates were rejected because the tip of your current branch is behind
-hint: its remote counterpart. Integrate the remote changes (e.g.
-hint: 'git pull ...') before pushing again.
-hint: See the 'Note about fast-forwards' in 'git push --help' for details.
-$ workspace % git pull
-From github.com:ZhenyaBukov/lab02
- * [new branch]      main       -> origin/main
-There is no tracking information for the current branch.
-Please specify which branch you want to merge with.
-See git-pull(1) for details.
 
-    git pull <remote> <branch>
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/zhenya/ZhenyaBukov/workspace/projects/lab03/_build
+/ZhenyaBukov/workspace/projects/lab03$ cmake --build _build --target install
+gmake: *** Нет правила для сборки цели «install».  Останов.
+/ZhenyaBukov/workspace/projects/lab03$ tree _install
+_install  [error opening dir]
 
-If you wish to set tracking information for this branch you can do so with:
+0 directories, 0 files
 
-    git branch --set-upstream-to=origin/<branch> main
-
-$ workspace % git log
-commit 3b4b3e950b4abd1bd3485bfae01944dbc8078d8c (HEAD -> main)
-Author: ZhenyaBukov <zhenya.bukov.06@mail.ru>
-Date:   Fri Apr 4 06:17:44 2025 -0700
-
-    added README.md
-
-commit 9ace56709a316017f673d021a927a442257136ef
-Author: ZhenyaBukov <zhenya.bukov.06@mail.ru>
-Date:   Mon Mar 24 11:17:24 2025 -0700
-
-    Create .gitignore
-
-commit f445772d1cc42ee7e87fa8f738271b0c1af4234b
-Author: ZhenyaBukov <zhenya.bukov.06@mail.ru>
-Date:   Fri Mar 7 03:46:53 2025 -0800
-
-    Initial commit
-$ workspace % git push -f origin main
-Enumerating objects: 4, done.
-Counting objects: 100% (4/4), done.
-Delta compression using up to 8 threads
-Compressing objects: 100% (2/2), done.
-Writing objects: 100% (3/3), 318 bytes | 318.00 KiB/s, done.
-Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
-To github.com:ZhenyaBukov/lab02.git
- + 44121d8...3b4b3e9 main -> main (forced update)
-$ workspace % git push origin main     
+/ZhenyaBukov/workspace/projects/lab03$ git add CMakeLists.txt
+/ZhenyaBukov/workspace/projects/lab03$ git commit -m"added CMakeLists.txt"
+[main 39df7fa] added CMakeLists.txt
+ 1 file changed, 12 insertions(+)
+ create mode 100644 CMakeLists.txt
+/ZhenyaBukov/workspace/projects/lab03$ git push -f origin main
+Перечисление объектов: 2939, готово.
+Подсчет объектов: 100% (2939/2939), готово.
+При сжатии изменений используется до 2 потоков
+Сжатие объектов: 100% (2243/2243), готово.
+Запись объектов: 100% (2939/2939), 13.45 МиБ | 926.00 КиБ/с, готово.
+Всего 2939 (изменений 524), повторно использовано 2935 (изменений 523), повторно использовано пакетов 0
+remote: Resolving deltas: 100% (524/524), done.
+remote: error: GH013: Repository rule violations found for refs/heads/main.
+remote: 
+remote: - GITHUB PUSH PROTECTION
+remote:   —————————————————————————————————————————
+remote:     Resolve the following violations before pushing again
+remote: 
+remote:     - Push cannot contain secrets
+remote: 
+remote:     
+remote:      (?) Learn how to resolve a blocked push
+remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push
+remote:     
+remote:     
+remote:       —— GitHub Personal Access Token ——————————————————————
+remote:        locations:
+remote:          - commit: c71fea93dbceb60601f9d9cc6175713b8e8fa5ba
+remote:            path: README.md:3
+remote:     
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
+remote:        https://github.com/ZhenyaBukov/lab03/security/secret-scanning/unblock-secret/2xHSPLtAuP7j3Y3oII6BgXUtTGa
+remote:     
+remote: 
+remote: 
+To github.com:ZhenyaBukov/lab03.git
+ ! [remote rejected] main -> main (push declined due to repository rule violations)
+error: не удалось отправить некоторые ссылки в «github.com:ZhenyaBukov/lab03.git»
+/ZhenyaBukov/workspace/projects/lab03$ git push -f origin main
+Перечисление объектов: 2939, готово.
+Подсчет объектов: 100% (2939/2939), готово.
+При сжатии изменений используется до 2 потоков
+Сжатие объектов: 100% (2243/2243), готово.
+Запись объектов: 100% (2939/2939), 13.45 МиБ | 1.16 МиБ/с, готово.
+Всего 2939 (изменений 524), повторно использовано 2935 (изменений 523), повторно использовано пакетов 0
+remote: Resolving deltas: 100% (524/524), done.
+To github.com:ZhenyaBukov/lab03.git
+ + e050b8d...39df7fa main -> main (forced update)
+/ZhenyaBukov/workspace/projects/lab03$ git push origin main
 Everything up-to-date
 
-
-$ workspace % git pull origin main  
-From github.com:ZhenyaBukov/lab02
- * branch            main       -> FETCH_HEAD
-Already up to date.
-$ workspace % git log
-commit 3b4b3e950b4abd1bd3485bfae01944dbc8078d8c (HEAD -> main, origin/main)
-Author: ZhenyaBukov <zhenya.bukov.06@mail.ru>
-Date:   Fri Apr 4 06:17:44 2025 -0700
-
-    added README.md
-
-commit 9ace56709a316017f673d021a927a442257136ef
-Author: ZhenyaBukov <zhenya.bukov.06@mail.ru>
-Date:   Mon Mar 24 11:17:24 2025 -0700
-
-    Create .gitignore
-
-commit f445772d1cc42ee7e87fa8f738271b0c1af4234b
-Author: ZhenyaBukov <zhenya.bukov.06@mail.ru>
-Date:   Fri Mar 7 03:46:53 2025 -0800
-
-    Initial commit
-
-    
-$ workspace % mkdir sources
-$ workspace % mkdir include
-$ workspace % mkdir examples
-$ workspace % cat > sources/print.cpp <<EOF
-heredoc> #include <print.hpp>
-heredoc> #include <print.hpp>                                  
-
-void print(const std::string& text, std::ostream& out)
-{
-  out << text;
-}
-
-void print(const std::string& text, std::ofstream& out)
-{
-  out << text;
-}
-EOF
-
-
-$ workspace % cat > include/print.hpp <<EOF
-#include <fstream>
-#include <iostream>
-#include <string>
-
-void print(const std::string& text, std::ofstream& out);
-void print(const std::string& text, std::ostream& out = std::cout);
-EOF
-
-
-$ workspace % cat > examples/example1.cpp <<EOF
-#include <print.hpp>
-
-int main(int argc, char** argv)
-{
-  print("hello");
-}
-EOF
-
-
-$ workspace % cat > examples/example2.cpp <<EOF
-#include <print.hpp>
-
-#include <fstream>
-
-int main(int argc, char** argv)
-{
-  std::ofstream file("log.txt");
-  print(std::string("hello"), file);
-}
-EOF
-
-
-$ workspace % edit README.md
-
-
-$ workspace % git status
-On branch main
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-	.DS_Store
-	examples/
-	include/
-	node/
-	projects/
-	scripts/
-	sources/
-
-nothing added to commit but untracked files present (use "git add" to track)
-$ workspace % git add .
-warning: adding embedded git repository: projects/lab02
-hint: You've added another git repository inside your current repository.
-hint: Clones of the outer repository will not contain the contents of
-hint: the embedded repository and will not know how to obtain it.
-hint: If you meant to add a submodule, use:
-hint: 
-hint: 	git submodule add <url> projects/lab02
-hint: 
-hint: If you added this path by mistake, you can remove it from the
-hint: index with:
-hint: 
-hint: 	git rm --cached projects/lab02
-hint: 
-hint: See "git help submodule" for more information.
-$ workspace % git commit -m"added sources"
-[main 87ac8ff] added sources
- 2757 files changed, 338351 insertions(+)
-$ workspace % git push origin main  
-Enumerating objects: 2925, done.
-Counting objects: 100% (2925/2925), done.
-Delta compression using up to 8 threads
-Compressing objects: 100% (2754/2754), done.
-Writing objects: 100% (2924/2924), 13.44 MiB | 1.24 MiB/s, done.
-Total 2924 (delta 519), reused 0 (delta 0), pack-reused 0
-remote: Resolving deltas: 100% (519/519), done.
-To github.com:ZhenyaBukov/lab02.git
-   3b4b3e9..87ac8ff  main -> main
