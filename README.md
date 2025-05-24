@@ -1,5 +1,5 @@
 zhenya@zhenya-VirtualBox:~$ export GITHUB_USERNAME=ZhenyaBukov
-zhenya@zhenya-VirtualBox:~$ export GITHUB_TOKEN=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
+zhenya@zhenya-VirtualBox:~$ alias gsed=sed
 
 
 
@@ -10,429 +10,761 @@ zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ source scripts/activate
 
 
 
-
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ sudo snap install curl
-[sudo] пароль для zhenya:
-curl 8.13.0 от hideo aoyama (aoilinux) installed
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ \curl -sSL https://get.rvm.io | bash -s -- --ignore-dotfiles
-Turning on ignore dotfiles mode.
-Downloading https://github.com/rvm/rvm/archive/master.tar.gz
-Installing RVM to /home/zhenya/.rvm/
-Installation of RVM in /home/zhenya/.rvm/ is almost complete:
- 
-  * To start using RVM you need to run `source /home/zhenya/.rvm/scripts/rvm`
-    in all your open shell windows, in rare cases you need to reopen all shell windows.
-Thanks for installing RVM 🙏
-Please consider donating to our open collective to help us maintain RVM.
- 
-👉  Donate: https://opencollective.com/rvm/donate
- 
- 
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ echo "source $HOME/.rvm/scripts/rvm" >> scripts/activate
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ . scripts/activate
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ rvm autolibs disable
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ gem install travis
-Fetching multi_json-1.15.0.gem
-Fetching net-http-pipeline-1.0.1.gem
-Fetching net-http-persistent-4.0.5.gem
-Fetching faraday-retry-2.3.1.gem
-Fetching faraday-2.7.12.gem
-Fetching connection_pool-2.5.3.gem
-Fetching faraday-typhoeus-1.1.0.gem
-Fetching tzinfo-2.0.6.gem
-Fetching public_suffix-6.0.2.gem
-Fetching faraday-net_http-3.0.2.gem
-Fetching ffi-1.17.2-x86_64-linux-gnu.gem
-Fetching rack-3.1.15.gem
-Fetching typhoeus-1.4.1.gem
-Fetching addressable-2.8.7.gem
-Fetching travis-gh-0.21.0.gem
-Fetching concurrent-ruby-1.3.5.gem
-Fetching i18n-1.14.7.gem
-Fetching activesupport-7.0.8.7.gem
-Fetching pusher-client-0.6.2.gem
-Fetching json_pure-2.6.3.gem
-Fetching rack-test-2.1.0.gem
-Fetching websocket-1.2.11.gem
-Fetching faraday-rack-2.1.2.gem
-Fetching travis-1.14.0.gem
-Fetching ethon-0.16.0.gem
-Fetching highline-2.1.0.gem
-Fetching launchy-2.5.2.gem
-ERROR:  While executing gem ... (Gem::FilePermissionError)
-    You don't have write permissions for the /var/lib/gems/3.2.0 directory.
-    /usr/lib/ruby/vendor_ruby/rubygems/installer.rb:713:in `verify_gem_home'
-    /usr/lib/ruby/vendor_ruby/rubygems/installer.rb:903:in `pre_install_checks'
-    /usr/lib/ruby/vendor_ruby/rubygems/installer.rb:303:in `install'
-    /usr/lib/ruby/vendor_ruby/rubygems/resolver/specification.rb:105:in `install'
-    /usr/lib/ruby/vendor_ruby/rubygems/request_set.rb:195:in `block in install'
-    /usr/lib/ruby/vendor_ruby/rubygems/request_set.rb:183:in `each'
-    /usr/lib/ruby/vendor_ruby/rubygems/request_set.rb:183:in `install'
-    /usr/lib/ruby/vendor_ruby/rubygems/commands/install_command.rb:215:in `install_gem'
-    /usr/lib/ruby/vendor_ruby/rubygems/commands/install_command.rb:231:in `block in install_gems'
-    /usr/lib/ruby/vendor_ruby/rubygems/commands/install_command.rb:224:in `each'
-    /usr/lib/ruby/vendor_ruby/rubygems/commands/install_command.rb:224:in `install_gems'
-    /usr/lib/ruby/vendor_ruby/rubygems/commands/install_command.rb:170:in `execute'
-    /usr/lib/ruby/vendor_ruby/rubygems/command.rb:328:in `invoke_with_build_args'
-    /usr/lib/ruby/vendor_ruby/rubygems/command_manager.rb:253:in `invoke_command'
-    /usr/lib/ruby/vendor_ruby/rubygems/command_manager.rb:193:in `process_args'
-    /usr/lib/ruby/vendor_ruby/rubygems/command_manager.rb:151:in `run'
-    /usr/lib/ruby/vendor_ruby/rubygems/gem_runner.rb:52:in `run'
-    /usr/bin/gem:12:in `<main>'
-
-
-    
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ git clone git@github.com:ZhenyaBukov/lab03.git projects/lab04
-Клонирование в «projects/lab04»...
-remote: Enumerating objects: 2942, done.
-remote: Counting objects: 100% (2942/2942), done.
-remote: Compressing objects: 100% (2245/2245), done.
-remote: Total 2942 (delta 525), reused 2938 (delta 524), pack-reused 0 (from 0)
-Получение объектов: 100% (2942/2942), 13.45 МиБ | 2.16 МиБ/с, готово.
-Определение изменений: 100% (525/525), готово.
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ cd projects/lab04
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ git remote remove origin
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ git remote add origin git@github.com:ZhenyaBukov/lab04.git
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ git clone git@github.com:ZhenyaBukov/lab04.git projects/lab05
+Клонирование в «projects/lab05»...
+remote: Enumerating objects: 2949, done.
+remote: Counting objects: 100% (2949/2949), done.
+remote: Compressing objects: 100% (2249/2249), done.
+remote: Total 2949 (delta 528), reused 2945 (delta 527), pack-reused 0 (from 0)
+Получение объектов: 100% (2949/2949), 13.46 МиБ | 2.72 МиБ/с, готово.
+Определение изменений: 100% (528/528), готово.
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ cd projects/lab05
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ git remote remove origin
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ git remote add origin git@github.com:ZhenyaBukov/lab05.git
 
 
 
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ cat > .travis.yml <<EOF
-> language: cpp
-EOF
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ mkdir third-party
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ git submodule add https://github.com/google/googletest third-party/gtest
+Клонирование в «/home/zhenya/ZhenyaBukov/workspace/projects/lab05/third-party/gtest»...
+remote: Enumerating objects: 28100, done.
+remote: Counting objects: 100% (318/318), done.
+remote: Compressing objects: 100% (200/200), done.
+remote: Total 28100 (delta 203), reused 125 (delta 113), pack-reused 27782 (from 4)
+Получение объектов: 100% (28100/28100), 13.58 МиБ | 1.77 МиБ/с, готово.
+Определение изменений: 100% (20811/20811), готово.
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ cd third-party/gtest && git checkout release-1.8.1 && cd ../..
+Примечание: переключение на «release-1.8.1».
 
+Вы сейчас в состоянии «отсоединённого указателя HEAD». Можете осмотреться,
+внести экспериментальные изменения и зафиксировать их, также можете
+отменить любые коммиты, созданные в этом состоянии, не затрагивая другие
+ветки, переключившись обратно на любую ветку.
 
+Если хотите создать новую ветку для сохранения созданных коммитов, можете
+сделать это (сейчас или позже), используя команду switch с параметром -c.
+Например:
 
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ cat >> .travis.yml <<EOF
->
-> script:
-- cmake -H. -B_build -DCMAKE_INSTALL_PREFIX=_install
-- cmake --build _build
-- cmake --build _build --target install
-EOF
+  git switch -c <новая-ветка>
 
+Или отмените эту операцию с помощью:
 
+  git switch -
 
+Отключите этот совет, установив переменную конфигурации
+advice.detachedHead в значение false
 
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ cat >> .travis.yml <<EOF
->
-> addons:
-  apt:
-    sources:
-      - george-edison55-precise-backports
-    packages:
-      - cmake
-      - cmake-data
-EOF
-
-
-
-
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ sudo snap install travis
-travis 1.8.9 от Travis CI✓ installed
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ travis login --github-token ${GITHUB_TOKEN}
-Outdated CLI version, run `gem install travis`.
-resource not found ({}
-)
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ sudo apt  install travis
-Чтение списков пакетов… Готово
-Построение дерева зависимостей… Готово
-Чтение информации о состоянии… Готово         
-Предлагаемые пакеты:
-  cp2k gnuplot grace graphviz pymol
-Следующие НОВЫЕ пакеты будут установлены:
-  travis
-Обновлено 0 пакетов, установлено 1 новых пакетов, для удаления отмечено 0 пакетов, и 111 пакетов не обновлено.
-Необходимо скачать 1526 kB архивов.
-После данной операции объём занятого дискового пространства возрастёт на 3864 kB.
-Пол:1 http://ru.archive.ubuntu.com/ubuntu noble/universe amd64 travis amd64 220729-1 [1526 kB]
-Получено 1526 kB за 1с (1753 kB/s)    
-Выбор ранее не выбранного пакета travis.
-(Чтение базы данных … на данный момент установлено 158335 файлов и
- каталогов.)
-Подготовка к распаковке …/travis_220729-1_amd64.deb …
-Распаковывается travis (220729-1) …
-Настраивается пакет travis (220729-1) …
-Обрабатываются триггеры для man-db (2.12.0-4build2) …
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ travis login --github-token ${GITHUB_TOKEN}
-Outdated CLI version, run `gem install travis`.
-resource not found ({}
-)
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ travis lint
-Outdated CLI version, run `gem install travis`.
-405: "<!doctype html>\n<html lang=en>\n<title>405 Method Not Allowed</title>\n<h1>Method Not Allowed</h1>\n<p>The method is not allowed for the requested URL.</p>\n"
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ sudo apt-get install ruby-full
-Чтение списков пакетов… Готово
-Построение дерева зависимостей… Готово
-Чтение информации о состоянии… Готово         
-Будут установлены следующие дополнительные пакеты:
-  libgmp-dev libgmpxx4ldbl ri ruby-dev ruby3.2-dev ruby3.2-doc
-Предлагаемые пакеты:
-  gmp-doc libgmp10-doc libmpfr-dev
-Следующие НОВЫЕ пакеты будут установлены:
-  libgmp-dev libgmpxx4ldbl ri ruby-dev ruby-full ruby3.2-dev
-  ruby3.2-doc
-Обновлено 0 пакетов, установлено 7 новых пакетов, для удаления отмечено 0 пакетов, и 111 пакетов не обновлено.
-Необходимо скачать 2779 kB архивов.
-После данной операции объём занятого дискового пространства возрастёт на 23,4 MB.
-Хотите продолжить? [Д/н] Д
-Пол:1 http://ru.archive.ubuntu.com/ubuntu noble-updates/main amd64 libgmpxx4ldbl amd64 2:6.3.0+dfsg-2ubuntu6.1 [9888 B]
-Пол:2 http://ru.archive.ubuntu.com/ubuntu noble-updates/main amd64 libgmp-dev amd64 2:6.3.0+dfsg-2ubuntu6.1 [340 kB]
-Пол:3 http://ru.archive.ubuntu.com/ubuntu noble-updates/main amd64 ruby3.2-doc all 3.2.3-1ubuntu0.24.04.5 [2017 kB]
-Пол:4 http://ru.archive.ubuntu.com/ubuntu noble/universe amd64 ri all 1:3.2~ubuntu1 [4724 B]
-Пол:5 http://ru.archive.ubuntu.com/ubuntu noble-updates/main amd64 ruby3.2-dev amd64 3.2.3-1ubuntu0.24.04.5 [399 kB]
-Пол:6 http://ru.archive.ubuntu.com/ubuntu noble/main amd64 ruby-dev amd64 1:3.2~ubuntu1 [4856 B]
-Пол:7 http://ru.archive.ubuntu.com/ubuntu noble/universe amd64 ruby-full all 1:3.2~ubuntu1 [2570 B]
-Получено 2779 kB за 1с (3274 kB/s)     
-Выбор ранее не выбранного пакета libgmpxx4ldbl:amd64.
-(Чтение базы данных … на данный момент установлено 158343 файла и каталога.)
-Подготовка к распаковке …/0-libgmpxx4ldbl_2%3a6.3.0+dfsg-2ubuntu6.1_amd64.deb …
-Распаковывается libgmpxx4ldbl:amd64 (2:6.3.0+dfsg-2ubuntu6.1) …
-Выбор ранее не выбранного пакета libgmp-dev:amd64.
-Подготовка к распаковке …/1-libgmp-dev_2%3a6.3.0+dfsg-2ubuntu6.1_amd64.deb …
-Распаковывается libgmp-dev:amd64 (2:6.3.0+dfsg-2ubuntu6.1) …
-Выбор ранее не выбранного пакета ruby3.2-doc.
-Подготовка к распаковке …/2-ruby3.2-doc_3.2.3-1ubuntu0.24.04.5_all.deb …
-Распаковывается ruby3.2-doc (3.2.3-1ubuntu0.24.04.5) …
-Выбор ранее не выбранного пакета ri.
-Подготовка к распаковке …/3-ri_1%3a3.2~ubuntu1_all.deb …
-Распаковывается ri (1:3.2~ubuntu1) …
-Выбор ранее не выбранного пакета ruby3.2-dev:amd64.
-Подготовка к распаковке …/4-ruby3.2-dev_3.2.3-1ubuntu0.24.04.5_amd64.deb …
-Распаковывается ruby3.2-dev:amd64 (3.2.3-1ubuntu0.24.04.5) …
-Выбор ранее не выбранного пакета ruby-dev:amd64.
-Подготовка к распаковке …/5-ruby-dev_1%3a3.2~ubuntu1_amd64.deb …
-Распаковывается ruby-dev:amd64 (1:3.2~ubuntu1) …
-Выбор ранее не выбранного пакета ruby-full.
-Подготовка к распаковке …/6-ruby-full_1%3a3.2~ubuntu1_all.deb …
-Распаковывается ruby-full (1:3.2~ubuntu1) …
-Настраивается пакет ruby3.2-doc (3.2.3-1ubuntu0.24.04.5) …
-Настраивается пакет ri (1:3.2~ubuntu1) …
-Настраивается пакет libgmpxx4ldbl:amd64 (2:6.3.0+dfsg-2ubuntu6.1) …
-Настраивается пакет libgmp-dev:amd64 (2:6.3.0+dfsg-2ubuntu6.1) …
-Настраивается пакет ruby3.2-dev:amd64 (3.2.3-1ubuntu0.24.04.5) …
-Настраивается пакет ruby-dev:amd64 (1:3.2~ubuntu1) …
-Настраивается пакет ruby-full (1:3.2~ubuntu1) …
-Обрабатываются триггеры для libc-bin (2.39-0ubuntu8.4) …
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ travis login --github-token ${GITHUB_TOKEN}
- 
-  ________                                 __
- /        |                               /  |
- ########/ ______    ______    __     __  ##/    _______
-    ## |  /      \  /      \  /  \   /  | /  |  /       |
-    ## | /######  | ######  | ##  \ /##/  ## | /#######/
-    ## | ## |  ##/  /    ## |  ##  /##/   ## | ##      \
-    ## | ## |      /####### |   ## ##/    ## |  ######  |
-    ## | ## |      ##    ## |    ###/     ## | /     ##/
-    ##/  ##/        #######/      #/      ##/  #######/
- 
-    TRajectory Analyzer and VISualizer  -  Open-source free software under GNU GPL v3
- 
-    Copyright (c) Martin Brehm      (2009-2022), University of Halle (Saale)
-                  Martin Thomas     (2012-2022)
-                  Sascha Gehrke     (2016-2022), University of Bonn
-                  Barbara Kirchner  (2009-2022), University of Bonn
- 
-    http://www.travis-analyzer.de
- 
-    Please cite: J. Chem. Phys. 2020, 152 (16), 164105.         (DOI 10.1063/5.0005078 )
-                 J. Chem. Inf. Model. 2011, 51 (8), 2007-2023.  (DOI 10.1021/ci200217w )
- 
-    There is absolutely no warranty on any results obtained from TRAVIS.
- 
- #  Running on zhenya-VirtualBox at Sun May 18 23:42:04 2025 (PID 29522)
- #  Running in /home/zhenya/ZhenyaBukov/workspace/projects/lab04
- #  Version: Jul 29 2022, built at Jan 14 2023, 12:32:45, compiler "12.2.0", GCC 12.2.0
- #  Target platform: Linux, __cplusplus=201703L, Compile flags: NEW_CHARGEVAR DEBUG_ARRAYS
- #  Compiled with OpenMP, but USE_OMP not switched on in "config.h"!
- #  Machine: x86_64, char=1b, int=4b, long=8b, addr=8b, 0xA0B0C0D0=D0,C0,B0,A0.
- #  Home: /home/zhenya,  Executable: /usr/bin/travis
- #  Input from terminal,  Output to terminal
- 
-    >>> Please use a color scheme with dark background or specify "-nocolor"! <<<
- 
-    No configuration file found.
-    Writing default configuration to /home/zhenya/.travis.conf ...
- 
-Unknown parameter: "login".
- 
-    List of supported command line options:
- 
-      -p <file>       Load position data from specified trajectory file.
-                      Format may be *.xyz, *.pdb, *.lmp (LAMMPS), HISTORY (DLPOLY), POSCAR/XDATCAR (VASP),
-                                    *.gro, *.dcd, or *.prmtop/*.mdcrd (Amber).
-                      The bqb format (*.bqb, *.btr, *.emp, *.blist) as well as *.voronoi are also supported.
-      -vel <file>     Read atom velocities from a file in addition to the position trajectory.
-                      Currently, only .xyz format is supported for velocity data.
-      -i <file>       Read input from specified text file.
-      -c <file>       Read and execute control file (experimental).
-      cubetool        Execute the CubeTool for modifying Gaussian Cube files.
-      -sankey <file>  Create Sankey diagrams (file name is optional).
-      -ramanfrompola  Compute Raman spectra from existing polarizability time series.
-      (de-)compress   Start built-in bqbtool (compress trajectories to BQB format).
-      check           Check BQB file integrity.
- 
-      -config <file>  Load the specified configuration file.
-      -stream         Treat input trajectory as a stream (e.g. named pipe): No fseek, etc.
-      -showconf       Show a tree structure of the configuration file.
-      -writeconf      Write the default configuration file, including all defines values.
- 
-      -verbose        Show detailed information about what's going on.
-      -nocolor        Execute TRAVIS in monochrome mode (suitable for white background).
-      -dimcolor       Use dim instead of bright colors.
- 
-      -credits        Display a list of persons who contributed to TRAVIS.
-      -help, -?       Shows this help.
- 
-    If only one argument is specified, it is assumed to be the name of a trajectory file.
-    If no argument is specified at all, TRAVIS asks for the trajectory file to open.
- 
-    Note: To show a list of all persons who contributed to TRAVIS,
-          please add "-credits" to your command line arguments, or set the
-          variable "SHOWCREDITS" to "TRUE" in your travis.conf file.
- 
-    Source code from other projects used in TRAVIS:
-      - lmfit     from Joachim Wuttke
-      - kiss_fft  from Mark Borgerding
-      - voro++    from Chris Rycroft
- 
-    http://www.travis-analyzer.de
- 
-    Please cite all of the following articles for the analyses you have used:
- 
-  * For TRAVIS in general:
- 
-    "TRAVIS - A Free Analyzer for Trajectories from Molecular Simulation",
-    M. Brehm, M. Thomas, S. Gehrke, B. Kirchner; J. Chem. Phys. 2020, 152 (16), 164105.   (DOI 10.1063/5.0005078 )
- 
-    "TRAVIS - A Free Analyzer and Visualizer for Monte Carlo and Molecular Dynamics Trajectories",
-    M. Brehm, B. Kirchner; J. Chem. Inf. Model. 2011, 51 (8), pp 2007-2023.   (DOI 10.1021/ci200217w )
- 
-*** The End ***
- 
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ travis lint
-[Renaming existing File travis.log to #2#travis.log ...OK.]
- 
-  ________                                 __
- /        |                               /  |
- ########/ ______    ______    __     __  ##/    _______
-    ## |  /      \  /      \  /  \   /  | /  |  /       |
-    ## | /######  | ######  | ##  \ /##/  ## | /#######/
-    ## | ## |  ##/  /    ## |  ##  /##/   ## | ##      \
-    ## | ## |      /####### |   ## ##/    ## |  ######  |
-    ## | ## |      ##    ## |    ###/     ## | /     ##/
-    ##/  ##/        #######/      #/      ##/  #######/
- 
-    TRajectory Analyzer and VISualizer  -  Open-source free software under GNU GPL v3
- 
-    Copyright (c) Martin Brehm      (2009-2022), University of Halle (Saale)
-                  Martin Thomas     (2012-2022)
-                  Sascha Gehrke     (2016-2022), University of Bonn
-                  Barbara Kirchner  (2009-2022), University of Bonn
- 
-    http://www.travis-analyzer.de
- 
-    Please cite: J. Chem. Phys. 2020, 152 (16), 164105.         (DOI 10.1063/5.0005078 )
-                 J. Chem. Inf. Model. 2011, 51 (8), 2007-2023.  (DOI 10.1021/ci200217w )
- 
-    There is absolutely no warranty on any results obtained from TRAVIS.
- 
- #  Running on zhenya-VirtualBox at Sun May 18 23:42:43 2025 (PID 29534)
- #  Running in /home/zhenya/ZhenyaBukov/workspace/projects/lab04
- #  Version: Jul 29 2022, built at Jan 14 2023, 12:32:45, compiler "12.2.0", GCC 12.2.0
- #  Target platform: Linux, __cplusplus=201703L, Compile flags: NEW_CHARGEVAR DEBUG_ARRAYS
- #  Compiled with OpenMP, but USE_OMP not switched on in "config.h"!
- #  Machine: x86_64, char=1b, int=4b, long=8b, addr=8b, 0xA0B0C0D0=D0,C0,B0,A0.
- #  Home: /home/zhenya,  Executable: /usr/bin/travis
- #  Input from terminal,  Output to terminal
- 
-    >>> Please use a color scheme with dark background or specify "-nocolor"! <<<
- 
-    Loading configuration from /home/zhenya/.travis.conf ...
- 
-[Renaming existing File input.txt to #2#input.txt ...OK.]
-Unknown parameter: "lint".
- 
-    List of supported command line options:
- 
-      -p <file>       Load position data from specified trajectory file.
-                      Format may be *.xyz, *.pdb, *.lmp (LAMMPS), HISTORY (DLPOLY), POSCAR/XDATCAR (VASP),
-                                    *.gro, *.dcd, or *.prmtop/*.mdcrd (Amber).
-                      The bqb format (*.bqb, *.btr, *.emp, *.blist) as well as *.voronoi are also supported.
-      -vel <file>     Read atom velocities from a file in addition to the position trajectory.
-                      Currently, only .xyz format is supported for velocity data.
-      -i <file>       Read input from specified text file.
-      -c <file>       Read and execute control file (experimental).
-      cubetool        Execute the CubeTool for modifying Gaussian Cube files.
-      -sankey <file>  Create Sankey diagrams (file name is optional).
-      -ramanfrompola  Compute Raman spectra from existing polarizability time series.
-      (de-)compress   Start built-in bqbtool (compress trajectories to BQB format).
-      check           Check BQB file integrity.
- 
-      -config <file>  Load the specified configuration file.
-      -stream         Treat input trajectory as a stream (e.g. named pipe): No fseek, etc.
-      -showconf       Show a tree structure of the configuration file.
-      -writeconf      Write the default configuration file, including all defines values.
- 
-      -verbose        Show detailed information about what's going on.
-      -nocolor        Execute TRAVIS in monochrome mode (suitable for white background).
-      -dimcolor       Use dim instead of bright colors.
- 
-      -credits        Display a list of persons who contributed to TRAVIS.
-      -help, -?       Shows this help.
- 
-    If only one argument is specified, it is assumed to be the name of a trajectory file.
-    If no argument is specified at all, TRAVIS asks for the trajectory file to open.
- 
-    Note: To show a list of all persons who contributed to TRAVIS,
-          please add "-credits" to your command line arguments, or set the
-          variable "SHOWCREDITS" to "TRUE" in your travis.conf file.
- 
-    Source code from other projects used in TRAVIS:
-      - lmfit     from Joachim Wuttke
-      - kiss_fft  from Mark Borgerding
-      - voro++    from Chris Rycroft
- 
-    http://www.travis-analyzer.de
- 
-    Please cite all of the following articles for the analyses you have used:
- 
-  * For TRAVIS in general:
- 
-    "TRAVIS - A Free Analyzer for Trajectories from Molecular Simulation",
-    M. Brehm, M. Thomas, S. Gehrke, B. Kirchner; J. Chem. Phys. 2020, 152 (16), 164105.   (DOI 10.1063/5.0005078 )
- 
-    "TRAVIS - A Free Analyzer and Visualizer for Monte Carlo and Molecular Dynamics Trajectories",
-    M. Brehm, B. Kirchner; J. Chem. Inf. Model. 2011, 51 (8), pp 2007-2023.   (DOI 10.1021/ci200217w )
- 
-*** The End ***
- 
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ ex -sc '1i|<фрагмент_вставки_значка>' -cx README.md
-
-
-
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ git add .travis.yml
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ git add README.md
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ git commit -m"added CI"
-[main f8800d7] added CI
- 2 files changed, 15 insertions(+)
- create mode 100644 .travis.yml
+HEAD сейчас на 2fe3bd99 Merge pull request #1433 from dsacre/fix-clang-warnings
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ git add third-party/gtest
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ git commit -m"added gtest framework"
+[main 28a5b67] added gtest framework
+ 2 files changed, 4 insertions(+)
+ create mode 100644 .gitmodules
+ create mode 160000 third-party/gtest
 
 
  
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ git push -f origin main
-Перечисление объектов: 2946, готово.
-Подсчет объектов: 100% (2946/2946), готово.
-При сжатии изменений используется до 2 потоков
-Сжатие объектов: 100% (2248/2248), готово.
-Запись объектов: 100% (2946/2946), 13.45 МиБ | 2.71 МиБ/с, готово.
-Всего 2946 (изменений 527), повторно использовано 2940 (изменений 525), повторно использовано пакетов 0
-remote: Resolving deltas: 100% (527/527), done.
-To github.com:ZhenyaBukov/lab04.git
- + 700a4de...f8800d7 main -> main (forced update)
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ git push origin master
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ gsed -i '/option(BUILD_EXAMPLES "Build examples" OFF)/a\
+> option(BUILD_TESTS "Build tests" OFF)
+' CMakeLists.txt
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ cat >> CMakeLists.txt <<EOF
+> 
+> if(BUILD_TESTS)
+  enable_testing()
+  add_subdirectory(third-party/gtest)
+  file(GLOB \${PROJECT_NAME}_TEST_SOURCES tests/*.cpp)
+  add_executable(check \${\${PROJECT_NAME}_TEST_SOURCES})
+  target_link_libraries(check \${PROJECT_NAME} gtest_main)
+  add_test(NAME check COMMAND check)
+endif()
+EOF
+
+
+
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ mkdir tests
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ cat > tests/test1.cpp <<EOF
+> #include <print.hpp>
+
+#include <gtest/gtest.h>
+
+TEST(Print, InFileStream)
+{
+  std::string filepath = "file.txt";
+  std::string text = "hello";
+  std::ofstream out{filepath};
+
+  print(text, out);
+  out.close();
+
+  std::string result;
+  std::ifstream in{filepath};
+  in >> result;
+
+  EXPECT_EQ(result, text);
+}
+EOF
+
+
+
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ cmake -H. -B_build -DBUILD_TESTS=ON
+CMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.5 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value or use a ...<max> suffix to tell
+  CMake that the project does not need compatibility with older versions.
+
+
+-- The C compiler identification is GNU 13.3.0
+-- The CXX compiler identification is GNU 13.3.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+CMake Deprecation Warning at third-party/gtest/CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.5 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value or use a ...<max> suffix to tell
+  CMake that the project does not need compatibility with older versions.
+
+
+CMake Deprecation Warning at third-party/gtest/googlemock/CMakeLists.txt:42 (cmake_minimum_required):
+  Compatibility with CMake < 3.5 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value or use a ...<max> suffix to tell
+  CMake that the project does not need compatibility with older versions.
+
+
+CMake Deprecation Warning at third-party/gtest/googletest/CMakeLists.txt:49 (cmake_minimum_required):
+  Compatibility with CMake < 3.5 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value or use a ...<max> suffix to tell
+  CMake that the project does not need compatibility with older versions.
+
+
+CMake Warning (dev) at third-party/gtest/googletest/cmake/internal_utils.cmake:239 (find_package):
+  Policy CMP0148 is not set: The FindPythonInterp and FindPythonLibs modules
+  are removed.  Run "cmake --help-policy CMP0148" for policy details.  Use
+  the cmake_policy command to set the policy and suppress this warning.
+
+Call Stack (most recent call first):
+  third-party/gtest/googletest/CMakeLists.txt:84 (include)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Found PythonInterp: /usr/bin/python3 (found version "3.12.3") 
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- Configuring done (0.6s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ cmake --build _build
+[  6%] Building CXX object CMakeFiles/print.dir/sources/print.cpp.o
+In file included from /home/zhenya/ZhenyaBukov/workspace/projects/lab05/sources/print.cpp:2:
+/home/zhenya/ZhenyaBukov/workspace/projects/lab05/include/print.hpp:6:6: error: default argument given for parameter 2 of ‘void print(const std::string&, std::ostream&)’ [-fpermissive]
+    6 | void print(const std::string& text, std::ostream& out = std::cout);
+      |      ^~~~~
+In file included from /home/zhenya/ZhenyaBukov/workspace/projects/lab05/sources/print.cpp:1:
+/home/zhenya/ZhenyaBukov/workspace/projects/lab05/include/print.hpp:6:6: note: previous specification in ‘void print(const std::string&, std::ostream&)’ here
+    6 | void print(const std::string& text, std::ostream& out = std::cout);
+      |      ^~~~~
+gmake[2]: *** [CMakeFiles/print.dir/build.make:76: CMakeFiles/print.dir/sources/print.cpp.o] Ошибка 1
+gmake[1]: *** [CMakeFiles/Makefile2:142: CMakeFiles/print.dir/all] Ошибка 2
+gmake: *** [Makefile:146: all] Ошибка 2
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ cmake --build _build --target test
+Running tests...
+Test project /home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build
+    Start 1: check
+Could not find executable /home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/check
+Looked in the following places:
+/home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/check
+/home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/check
+/home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/Release/check
+/home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/Release/check
+/home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/Debug/check
+/home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/Debug/check
+/home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/MinSizeRel/check
+/home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/MinSizeRel/check
+/home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/RelWithDebInfo/check
+/home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/RelWithDebInfo/check
+/home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/Deployment/check
+/home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/Deployment/check
+/home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/Development/check
+/home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/Development/check
+home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/check
+home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/check
+home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/Release/check
+home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/Release/check
+home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/Debug/check
+home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/Debug/check
+home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/MinSizeRel/check
+home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/MinSizeRel/check
+home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/RelWithDebInfo/check
+home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/RelWithDebInfo/check
+home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/Deployment/check
+home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/Deployment/check
+home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/Development/check
+home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/Development/check
+Unable to find executable: /home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/check
+1/1 Test #1: check ............................***Not Run   0.00 sec
+
+0% tests passed, 1 tests failed out of 1
+
+Total Test time (real) =   0.00 sec
+
+The following tests FAILED:
+	  1 - check (Not Run)
+Errors while running CTest
+Output from these tests are in: /home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/Testing/Temporary/LastTest.log
+Use "--rerun-failed --output-on-failure" to re-run the failed cases verbosely.
+gmake: *** [Makefile:71: test] Ошибка 8
+
+
+
+
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ _build/check
+bash: _build/check: Нет такого файла или каталога
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ cmake --build _build --target test -- ARGS=--verbose
+Running tests...
+UpdateCTestConfiguration  from :/home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/DartConfiguration.tcl
+UpdateCTestConfiguration  from :/home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/DartConfiguration.tcl
+Test project /home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 1
+    Start 1: check
+Could not find executable /home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/check
+Looked in the following places:
+/home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/check
+/home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/check
+/home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/Release/check
+/home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/Release/check
+/home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/Debug/check
+/home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/Debug/check
+/home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/MinSizeRel/check
+/home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/MinSizeRel/check
+/home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/RelWithDebInfo/check
+/home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/RelWithDebInfo/check
+/home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/Deployment/check
+/home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/Deployment/check
+/home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/Development/check
+/home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/Development/check
+home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/check
+home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/check
+home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/Release/check
+home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/Release/check
+home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/Debug/check
+home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/Debug/check
+home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/MinSizeRel/check
+home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/MinSizeRel/check
+home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/RelWithDebInfo/check
+home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/RelWithDebInfo/check
+home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/Deployment/check
+home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/Deployment/check
+home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/Development/check
+home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/Development/check
+
+1: Test command: 
+1: Working Directory: /home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build
+Unable to find executable: /home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/check
+1/1 Test #1: check ............................***Not Run   0.00 sec
+
+0% tests passed, 1 tests failed out of 1
+
+Total Test time (real) =   0.00 sec
+
+The following tests FAILED:
+	  1 - check (Not Run)
+Errors while running CTest
+Output from these tests are in: /home/zhenya/ZhenyaBukov/workspace/projects/lab05/_build/Testing/Temporary/LastTest.log
+Use "--rerun-failed --output-on-failure" to re-run the failed cases verbosely.
+gmake: *** [Makefile:71: test] Ошибка 8
+
+
+
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ gsed -i 's/lab04/lab05/g' README.md
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ gsed -i 's/\(DCMAKE_INSTALL_PREFIX=_install\)/\1 -DBUILD_TESTS=ON/' .travis.yml
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ gsed -i '/cmake --build _build --target install/a\
+> - cmake --build _build --target test -- ARGS=--verbose
+' .travis.yml
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ travis lint
+
+  ________                                 __
+ /        |                               /  |
+ ########/ ______    ______    __     __  ##/    _______
+    ## |  /      \  /      \  /  \   /  | /  |  /       |
+    ## | /######  | ######  | ##  \ /##/  ## | /#######/
+    ## | ## |  ##/  /    ## |  ##  /##/   ## | ##      \
+    ## | ## |      /####### |   ## ##/    ## |  ######  |
+    ## | ## |      ##    ## |    ###/     ## | /     ##/
+    ##/  ##/        #######/      #/      ##/  #######/
+
+    TRajectory Analyzer and VISualizer  -  Open-source free software under GNU GPL v3
+
+    Copyright (c) Martin Brehm      (2009-2022), University of Halle (Saale)
+                  Martin Thomas     (2012-2022)
+                  Sascha Gehrke     (2016-2022), University of Bonn
+                  Barbara Kirchner  (2009-2022), University of Bonn
+
+    http://www.travis-analyzer.de
+
+    Please cite: J. Chem. Phys. 2020, 152 (16), 164105.         (DOI 10.1063/5.0005078 )
+                 J. Chem. Inf. Model. 2011, 51 (8), 2007-2023.  (DOI 10.1021/ci200217w )
+
+    There is absolutely no warranty on any results obtained from TRAVIS.
+
+ #  Running on zhenya-VirtualBox at Sat May 24 22:39:07 2025 (PID 38246)
+ #  Running in /home/zhenya/ZhenyaBukov/workspace/projects/lab05
+ #  Version: Jul 29 2022, built at Jan 14 2023, 12:32:45, compiler "12.2.0", GCC 12.2.0
+ #  Target platform: Linux, __cplusplus=201703L, Compile flags: NEW_CHARGEVAR DEBUG_ARRAYS 
+ #  Compiled with OpenMP, but USE_OMP not switched on in "config.h"!
+ #  Machine: x86_64, char=1b, int=4b, long=8b, addr=8b, 0xA0B0C0D0=D0,C0,B0,A0.
+ #  Home: /home/zhenya,  Executable: /usr/bin/travis
+ #  Input from terminal,  Output to terminal
+
+    >>> Please use a color scheme with dark background or specify "-nocolor"! <<<
+
+    Loading configuration from /home/zhenya/.travis.conf ...
+
+Unknown parameter: "lint".
+
+    List of supported command line options:
+
+      -p <file>       Load position data from specified trajectory file.
+                      Format may be *.xyz, *.pdb, *.lmp (LAMMPS), HISTORY (DLPOLY), POSCAR/XDATCAR (VASP),
+                                    *.gro, *.dcd, or *.prmtop/*.mdcrd (Amber).
+                      The bqb format (*.bqb, *.btr, *.emp, *.blist) as well as *.voronoi are also supported.
+      -vel <file>     Read atom velocities from a file in addition to the position trajectory.
+                      Currently, only .xyz format is supported for velocity data.
+      -i <file>       Read input from specified text file.
+      -c <file>       Read and execute control file (experimental).
+      cubetool        Execute the CubeTool for modifying Gaussian Cube files.
+      -sankey <file>  Create Sankey diagrams (file name is optional).
+      -ramanfrompola  Compute Raman spectra from existing polarizability time series.
+      (de-)compress   Start built-in bqbtool (compress trajectories to BQB format).
+      check           Check BQB file integrity.
+
+      -config <file>  Load the specified configuration file.
+      -stream         Treat input trajectory as a stream (e.g. named pipe): No fseek, etc.
+      -showconf       Show a tree structure of the configuration file.
+      -writeconf      Write the default configuration file, including all defines values.
+
+      -verbose        Show detailed information about what's going on.
+      -nocolor        Execute TRAVIS in monochrome mode (suitable for white background).
+      -dimcolor       Use dim instead of bright colors.
+
+      -credits        Display a list of persons who contributed to TRAVIS.
+      -help, -?       Shows this help.
+
+    If only one argument is specified, it is assumed to be the name of a trajectory file.
+    If no argument is specified at all, TRAVIS asks for the trajectory file to open.
+
+    Note: To show a list of all persons who contributed to TRAVIS,
+          please add "-credits" to your command line arguments, or set the
+          variable "SHOWCREDITS" to "TRUE" in your travis.conf file.
+
+    Source code from other projects used in TRAVIS:
+      - lmfit     from Joachim Wuttke
+      - kiss_fft  from Mark Borgerding
+      - voro++    from Chris Rycroft
+
+    http://www.travis-analyzer.de
+
+    Please cite all of the following articles for the analyses you have used:
+
+  * For TRAVIS in general:
+
+    "TRAVIS - A Free Analyzer for Trajectories from Molecular Simulation",
+    M. Brehm, M. Thomas, S. Gehrke, B. Kirchner; J. Chem. Phys. 2020, 152 (16), 164105.   (DOI 10.1063/5.0005078 )
+
+    "TRAVIS - A Free Analyzer and Visualizer for Monte Carlo and Molecular Dynamics Trajectories",
+    M. Brehm, B. Kirchner; J. Chem. Inf. Model. 2011, 51 (8), pp 2007-2023.   (DOI 10.1021/ci200217w )
+
+*** The End ***
+
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ git add .travis.yml
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ git add tests
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ git add -p
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 7bb5578..ae34362 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -10,3 +10,12 @@ add_executable(example2 ${CMAKE_CURRENT_SOURCE_DIR}/examples/example2.cpp)
+ 
+ target_link_libraries(example1 print)
+ target_link_libraries(example2 print)
++
++if(BUILD_TESTS)
++  enable_testing()
++  add_subdirectory(third-party/gtest)
++  file(GLOB ${PROJECT_NAME}_TEST_SOURCES tests/*.cpp)
++  add_executable(check ${${PROJECT_NAME}_TEST_SOURCES})
++  target_link_libraries(check ${PROJECT_NAME} gtest_main)
++  add_test(NAME check COMMAND check)
++endif()
+(1/1) Индексировать этот блок [y,n,q,a,d,e,?]? y
+
+diff --git a/README.md b/README.md
+index a715d4f..2c3375c 100644
+--- a/README.md
++++ b/README.md
+@@ -82,27 +82,27 @@ ERROR:  While executing gem ... (Gem::FilePermissionError)
+ 
+ 
+     
+-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ git clone git@github.com:ZhenyaBukov/lab03.git projects/lab04
+-Клонирование в «projects/lab04»...
++zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ git clone git@github.com:ZhenyaBukov/lab03.git projects/lab05
++Клонирование в «projects/lab05»...
+ remote: Enumerating objects: 2942, done.
+ remote: Counting objects: 100% (2942/2942), done.
+ remote: Compressing objects: 100% (2245/2245), done.
+ remote: Total 2942 (delta 525), reused 2938 (delta 524), pack-reused 0 (from 0)
+ Получение объектов: 100% (2942/2942), 13.45 МиБ | 2.16 МиБ/с, готово.
+ Определение изменений: 100% (525/525), готово.
+-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ cd projects/lab04
+-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ git remote remove origin
+-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ git remote add origin git@github.com:ZhenyaBukov/lab04.git
++zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ cd projects/lab05
++zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ git remote remove origin
++zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ git remote add origin git@github.com:ZhenyaBukov/lab05.git
+ 
+ 
+ 
+-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ cat > .travis.yml <<EOF
++zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ cat > .travis.yml <<EOF
+ > language: cpp
+ EOF
+ 
+ 
+ 
+-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ cat >> .travis.yml <<EOF
++zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ cat >> .travis.yml <<EOF
+ >
+ > script:
+ - cmake -H. -B_build -DCMAKE_INSTALL_PREFIX=_install
+(1/10) Индексировать этот блок [y,n,q,a,d,j,J,g,/,s,e,?]? 
+@@ -82,27 +82,27 @@ ERROR:  While executing gem ... (Gem::FilePermissionError)
+ 
+ 
+     
+-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ git clone git@github.com:ZhenyaBukov/lab03.git projects/lab04
+-Клонирование в «projects/lab04»...
++zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ git clone git@github.com:ZhenyaBukov/lab03.git projects/lab05
++Клонирование в «projects/lab05»...
+ remote: Enumerating objects: 2942, done.
+ remote: Counting objects: 100% (2942/2942), done.
+ remote: Compressing objects: 100% (2245/2245), done.
+ remote: Total 2942 (delta 525), reused 2938 (delta 524), pack-reused 0 (from 0)
+ Получение объектов: 100% (2942/2942), 13.45 МиБ | 2.16 МиБ/с, готово.
+ Определение изменений: 100% (525/525), готово.
+-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ cd projects/lab04
+-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ git remote remove origin
+-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ git remote add origin git@github.com:ZhenyaBukov/lab04.git
++zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ cd projects/lab05
++zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ git remote remove origin
++zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ git remote add origin git@github.com:ZhenyaBukov/lab05.git
+ 
+ 
+ 
+-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ cat > .travis.yml <<EOF
++zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ cat > .travis.yml <<EOF
+ > language: cpp
+ EOF
+ 
+ 
+ 
+-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ cat >> .travis.yml <<EOF
++zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ cat >> .travis.yml <<EOF
+ >
+ > script:
+ - cmake -H. -B_build -DCMAKE_INSTALL_PREFIX=_install
+(1/10) Индексировать этот блок [y,n,q,a,d,j,J,g,/,s,e,?]? 
+@@ -82,27 +82,27 @@ ERROR:  While executing gem ... (Gem::FilePermissionError)
+ 
+ 
+     
+-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ git clone git@github.com:ZhenyaBukov/lab03.git projects/lab04
+-Клонирование в «projects/lab04»...
++zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ git clone git@github.com:ZhenyaBukov/lab03.git projects/lab05
++Клонирование в «projects/lab05»...
+ remote: Enumerating objects: 2942, done.
+ remote: Counting objects: 100% (2942/2942), done.
+ remote: Compressing objects: 100% (2245/2245), done.
+ remote: Total 2942 (delta 525), reused 2938 (delta 524), pack-reused 0 (from 0)
+ Получение объектов: 100% (2942/2942), 13.45 МиБ | 2.16 МиБ/с, готово.
+ Определение изменений: 100% (525/525), готово.
+-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ cd projects/lab04
+-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ git remote remove origin
+-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ git remote add origin git@github.com:ZhenyaBukov/lab04.git
++zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ cd projects/lab05
++zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ git remote remove origin
++zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ git remote add origin git@github.com:ZhenyaBukov/lab05.git
+ 
+ 
+ 
+-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ cat > .travis.yml <<EOF
++zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ cat > .travis.yml <<EOF
+ > language: cpp
+ EOF
+ 
+ 
+ 
+-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ cat >> .travis.yml <<EOF
++zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ cat >> .travis.yml <<EOF
+ >
+ > script:
+ - cmake -H. -B_build -DCMAKE_INSTALL_PREFIX=_install
+(1/10) Индексировать этот блок [y,n,q,a,d,j,J,g,/,s,e,?]? y
+@@ -113,7 +113,7 @@ EOF
+ 
+ 
+ 
+-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ cat >> .travis.yml <<EOF
++zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ cat >> .travis.yml <<EOF
+ >
+ > addons:
+   apt:
+(2/10) Индексировать этот блок [y,n,q,a,d,K,j,J,g,/,e,?]? y
+@@ -127,13 +127,13 @@ EOF
+ 
+ 
+ 
+-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ sudo snap install travis
++zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ sudo snap install travis
+ travis 1.8.9 от Travis CI✓ installed
+-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ travis login --github-token ${GITHUB_TOKEN}
++zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ travis login --github-token ${GITHUB_TOKEN}
+ Outdated CLI version, run `gem install travis`.
+ resource not found ({}
+ )
+-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ sudo apt  install travis
++zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ sudo apt  install travis
+ Чтение списков пакетов… Готово
+ Построение дерева зависимостей… Готово
+ Чтение информации о состоянии… Готово         
+(3/10) Индексировать этот блок [y,n,q,a,d,K,j,J,g,/,s,e,?]? y
+@@ -153,14 +153,14 @@ zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ sudo apt  inst
+ Распаковывается travis (220729-1) …
+ Настраивается пакет travis (220729-1) …
+ Обрабатываются триггеры для man-db (2.12.0-4build2) …
+-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ travis login --github-token ${GITHUB_TOKEN}
++zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ travis login --github-token ${GITHUB_TOKEN}
+ Outdated CLI version, run `gem install travis`.
+ resource not found ({}
+ )
+-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ travis lint
++zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ travis lint
+ Outdated CLI version, run `gem install travis`.
+ 405: "<!doctype html>\n<html lang=en>\n<title>405 Method Not Allowed</title>\n<h1>Method Not Allowed</h1>\n<p>The method is not allowed for the requested URL.</p>\n"
+-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ sudo apt-get install ruby-full
++zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ sudo apt-get install ruby-full
+ Чтение списков пакетов… Готово
+ Построение дерева зависимостей… Готово
+ Чтение информации о состоянии… Готово         
+(4/10) Индексировать этот блок [y,n,q,a,d,K,j,J,g,/,s,e,?]? y
+@@ -213,7 +213,7 @@ zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ sudo apt-get in
+ Настраивается пакет ruby-dev:amd64 (1:3.2~ubuntu1) …
+ Настраивается пакет ruby-full (1:3.2~ubuntu1) …
+ Обрабатываются триггеры для libc-bin (2.39-0ubuntu8.4) …
+-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ travis login --github-token ${GITHUB_TOKEN}
++zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ travis login --github-token ${GITHUB_TOKEN}
+  
+   ________                                 __
+  /        |                               /  |
+(5/10) Индексировать этот блок [y,n,q,a,d,K,j,J,g,/,e,?]? y
+@@ -240,7 +240,7 @@ zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ travis login --
+     There is absolutely no warranty on any results obtained from TRAVIS.
+  
+  #  Running on zhenya-VirtualBox at Sun May 18 23:42:04 2025 (PID 29522)
+- #  Running in /home/zhenya/ZhenyaBukov/workspace/projects/lab04
++ #  Running in /home/zhenya/ZhenyaBukov/workspace/projects/lab05
+  #  Version: Jul 29 2022, built at Jan 14 2023, 12:32:45, compiler "12.2.0", GCC 12.2.0
+  #  Target platform: Linux, __cplusplus=201703L, Compile flags: NEW_CHARGEVAR DEBUG_ARRAYS
+  #  Compiled with OpenMP, but USE_OMP not switched on in "config.h"!
+(6/10) Индексировать этот блок [y,n,q,a,d,K,j,J,g,/,e,?]? y
+@@ -309,7 +309,7 @@ Unknown parameter: "login".
+  
+ *** The End ***
+  
+-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ travis lint
++zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ travis lint
+ [Renaming existing File travis.log to #2#travis.log ...OK.]
+  
+   ________                                 __
+(7/10) Индексировать этот блок [y,n,q,a,d,K,j,J,g,/,e,?]? y
+@@ -337,7 +337,7 @@ zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ travis lint
+     There is absolutely no warranty on any results obtained from TRAVIS.
+  
+  #  Running on zhenya-VirtualBox at Sun May 18 23:42:43 2025 (PID 29534)
+- #  Running in /home/zhenya/ZhenyaBukov/workspace/projects/lab04
++ #  Running in /home/zhenya/ZhenyaBukov/workspace/projects/lab05
+  #  Version: Jul 29 2022, built at Jan 14 2023, 12:32:45, compiler "12.2.0", GCC 12.2.0
+  #  Target platform: Linux, __cplusplus=201703L, Compile flags: NEW_CHARGEVAR DEBUG_ARRAYS
+  #  Compiled with OpenMP, but USE_OMP not switched on in "config.h"!
+(8/10) Индексировать этот блок [y,n,q,a,d,K,j,J,g,/,e,?]? y
+@@ -406,20 +406,20 @@ Unknown parameter: "lint".
+  
+ *** The End ***
+  
+-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ ex -sc '1i|<фрагмент_вставки_значка>' -cx README.md
++zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ ex -sc '1i|<фрагмент_вставки_значка>' -cx README.md
+ 
+ 
+ 
+-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ git add .travis.yml
+-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ git add README.md
+-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ git commit -m"added CI"
++zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ git add .travis.yml
++zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ git add README.md
++zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ git commit -m"added CI"
+ [main f8800d7] added CI
+  2 files changed, 15 insertions(+)
+  create mode 100644 .travis.yml
+ 
+ 
+  
+-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ git push -f origin main
++zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ git push -f origin main
+ Перечисление объектов: 2946, готово.
+ Подсчет объектов: 100% (2946/2946), готово.
+ При сжатии изменений используется до 2 потоков
+(9/10) Индексировать этот блок [y,n,q,a,d,K,j,J,g,/,s,e,?]? y
+@@ -427,12 +427,12 @@ zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ git push -f ori
+ Запись объектов: 100% (2946/2946), 13.45 МиБ | 2.71 МиБ/с, готово.
+ Всего 2946 (изменений 527), повторно использовано 2940 (изменений 525), повторно использовано пакетов 0
+ remote: Resolving deltas: 100% (527/527), done.
+-To github.com:ZhenyaBukov/lab04.git
++To github.com:ZhenyaBukov/lab05.git
+  + 700a4de...f8800d7 main -> main (forced update)
+-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ git push origin master
++zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ git push origin master
+ error: src refspec master ничему не соответствует
+-error: не удалось отправить некоторые ссылки в «github.com:ZhenyaBukov/lab04.git»
+-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ git push origin main
++error: не удалось отправить некоторые ссылки в «github.com:ZhenyaBukov/lab05.git»
++zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ git push origin main
+ Everything up-to-date
+-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$
++zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$
+  
+(10/10) Индексировать этот блок [y,n,q,a,d,K,g,/,s,e,?]? y
+
+
+
+
+
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ git push origin master
 error: src refspec master ничему не соответствует
-error: не удалось отправить некоторые ссылки в «github.com:ZhenyaBukov/lab04.git»
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ git push origin main
+error: не удалось отправить некоторые ссылки в «github.com:ZhenyaBukov/lab05.git»
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ git push origin main
+To github.com:ZhenyaBukov/lab05.git
+ ! [rejected]        main -> main (fetch first)
+error: не удалось отправить некоторые ссылки в «github.com:ZhenyaBukov/lab05.git»
+подсказка: Updates were rejected because the remote contains work that you do not
+подсказка: have locally. This is usually caused by another repository pushing to
+подсказка: the same ref. If you want to integrate the remote changes, use
+подсказка: 'git pull' before pushing again.
+подсказка: See the 'Note about fast-forwards' in 'git push --help' for details.
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ git push -f origin main
+Перечисление объектов: 2953, готово.
+Подсчет объектов: 100% (2953/2953), готово.
+При сжатии изменений используется до 2 потоков
+Сжатие объектов: 100% (2251/2251), готово.
+Запись объектов: 100% (2953/2953), 13.46 МиБ | 3.63 МиБ/с, готово.
+Всего 2953 (изменений 529), повторно использовано 2948 (изменений 528), повторно использовано пакетов 0
+remote: Resolving deltas: 100% (529/529), done.
+remote: error: GH013: Repository rule violations found for refs/heads/main.
+remote: 
+remote: - GITHUB PUSH PROTECTION
+remote:   —————————————————————————————————————————
+remote:     Resolve the following violations before pushing again
+remote: 
+remote:     - Push cannot contain secrets
+remote: 
+remote:     
+remote:      (?) Learn how to resolve a blocked push
+remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push
+remote:     
+remote:     
+remote:       —— GitHub Personal Access Token ——————————————————————
+remote:        locations:
+remote:          - commit: d9761b6860846de6c653a920d82595366474a101
+remote:            path: README.md:2
+remote:     
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
+remote:        https://github.com/ZhenyaBukov/lab05/security/secret-scanning/unblock-secret/2xYWxpTa863ENgTEzXwGh9N9kHj
+remote:     
+remote:     
+remote:       —— GitHub Personal Access Token ——————————————————————
+remote:        locations:
+remote:          - commit: c71fea93dbceb60601f9d9cc6175713b8e8fa5ba
+remote:            path: README.md:3
+remote:     
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
+remote:        https://github.com/ZhenyaBukov/lab05/security/secret-scanning/unblock-secret/2xYWxrzsPQL6YiDDfX8neRfLaLd
+remote:     
+remote: 
+remote: 
+To github.com:ZhenyaBukov/lab05.git
+ ! [remote rejected] main -> main (push declined due to repository rule violations)
+error: не удалось отправить некоторые ссылки в «github.com:ZhenyaBukov/lab05.git»
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ git push -f origin main
+Перечисление объектов: 2953, готово.
+Подсчет объектов: 100% (2953/2953), готово.
+При сжатии изменений используется до 2 потоков
+Сжатие объектов: 100% (2251/2251), готово.
+Запись объектов: 100% (2953/2953), 13.46 МиБ | 3.91 МиБ/с, готово.
+Всего 2953 (изменений 529), повторно использовано 2948 (изменений 528), повторно использовано пакетов 0
+remote: Resolving deltas: 100% (529/529), done.
+remote: error: GH013: Repository rule violations found for refs/heads/main.
+remote: 
+remote: - GITHUB PUSH PROTECTION
+remote:   —————————————————————————————————————————
+remote:     Resolve the following violations before pushing again
+remote: 
+remote:     - Push cannot contain secrets
+remote: 
+remote:     
+remote:      (?) Learn how to resolve a blocked push
+remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push
+remote:     
+remote:     
+remote:       —— GitHub Personal Access Token ——————————————————————
+remote:        locations:
+remote:          - commit: d9761b6860846de6c653a920d82595366474a101
+remote:            path: README.md:2
+remote:     
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
+remote:        https://github.com/ZhenyaBukov/lab05/security/secret-scanning/unblock-secret/2xYWxpTa863ENgTEzXwGh9N9kHj
+remote:     
+remote: 
+remote: 
+To github.com:ZhenyaBukov/lab05.git
+ ! [remote rejected] main -> main (push declined due to repository rule violations)
+error: не удалось отправить некоторые ссылки в «github.com:ZhenyaBukov/lab05.git»
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$  git push -f origin main
+Перечисление объектов: 2953, готово.
+Подсчет объектов: 100% (2953/2953), готово.
+При сжатии изменений используется до 2 потоков
+Сжатие объектов: 100% (2251/2251), готово.
+Запись объектов: 100% (2953/2953), 13.46 МиБ | 3.34 МиБ/с, готово.
+Всего 2953 (изменений 529), повторно использовано 2948 (изменений 528), повторно использовано пакетов 0
+remote: Resolving deltas: 100% (529/529), done.
+To github.com:ZhenyaBukov/lab05.git
+ + 55b3f1d...28a5b67 main -> main (forced update)
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab05$ git push origin main
 Everything up-to-date
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$
- 
