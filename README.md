@@ -1,383 +1,56 @@
 zhenya@zhenya-VirtualBox:~$ export GITHUB_USERNAME=ZhenyaBukov
-zhenya@zhenya-VirtualBox:~$ export GITHUB_EMAIL=zhenya.bukov.06@mail.ru
-zhenya@zhenya-VirtualBox:~$ alias edit=nano
 zhenya@zhenya-VirtualBox:~$ alias gsed=sed
-
-
-
 zhenya@zhenya-VirtualBox:~$ cd ${GITHUB_USERNAME}/workspace
 zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ pushd .
 ~/ZhenyaBukov/workspace ~/ZhenyaBukov/workspace
 zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ source scripts/activate
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ git clone git@github.com:ZhenyaBukov/lab06.git projects/lab07
+Клонирование в «projects/lab07»...
+remote: Enumerating objects: 2968, done.
+remote: Counting objects: 100% (2968/2968), done.
+remote: Compressing objects: 100% (2259/2259), done.
+remote: Total 2968 (delta 537), reused 2964 (delta 535), pack-reused 0 (from 0)
+Получение объектов: 100% (2968/2968), 13.47 МиБ | 1.44 МиБ/с, готово.
+Определение изменений: 100% (537/537), готово.
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ cd projects/lab07
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$ git remote remove origin
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$ git remote add origin git@github.com:ZhenyaBukov/lab07.git
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$ mkdir -p cmake
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$ get https://raw.githubusercontent.com/cpp-pm/gate/master/cmake/HunterGate.cmake -O cmake/HunterGate.cmake
+Команда «get» не найдена, но есть 18 похожих.
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$ wget https://raw.githubusercontent.com/cpp-pm/gate/master/cmake/HunterGate.cmake -O cmake/HunterGate.cmake
+--2025-05-30 17:03:05--  https://raw.githubusercontent.com/cpp-pm/gate/master/cmake/HunterGate.cmake
+Распознаётся raw.githubusercontent.com (raw.githubusercontent.com)… 185.199.108.133, 185.199.110.133, 185.199.109.133, ...
+Подключение к raw.githubusercontent.com (raw.githubusercontent.com)|185.199.108.133|:443... соединение установлено.
+HTTP-запрос отправлен. Ожидание ответа… 200 OK
+Длина: 17231 (17K) [text/plain]
+Сохранение в: ‘cmake/HunterGate.cmake’
 
+cmake/HunterGate 100%[=======>]  16,83K  --.-KB/s    за 0,02s   
 
+2025-05-30 17:03:06 (1,08 MB/s) - ‘cmake/HunterGate.cmake’ сохранён [17231/17231]
 
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ git clone git@github.com:ZhenyaBukov/lab05.git projects/lab06
-Клонирование в «projects/lab06»...
-remote: Enumerating objects: 2959, done.
-remote: Counting objects: 100% (2959/2959), done.
-remote: Compressing objects: 100% (2256/2256), done.
-remote: Total 2959 (delta 532), reused 2951 (delta 529), pack-reused 0 (from 0)
-Получение объектов: 100% (2959/2959), 13.47 МиБ | 2.04 МиБ/с, готово.
-Определение изменений: 100% (532/532), готово.
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ cd projects/lab06
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git remote remove origin
-
-
-
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git remote add origin git@github.com:ZhenyaBukov/lab06.git
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ gsed -i '/project(print)/a\
-> set(PRINT_VERSION_STRING "v\${PRINT_VERSION}")
-> ' CMakeLists.txt
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ gsed -i '/project(print)/a\
-> set(PRINT_VERSION\
-  \${PRINT_VERSION_MAJOR}.\${PRINT_VERSION_MINOR}.\${PRINT_VERSION_PATCH}.\${PRINT_VERSION_TWEAK})
-' CMakeLists.txt
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ gsed -i '/project(print)/a\
-> set(PRINT_VERSION_TWEAK 0)
-' CMakeLists.txt
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ gsed -i '/project(print)/a\
-> set(PRINT_VERSION_PATCH 0)
-' CMakeLists.txt
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ gsed -i '/project(print)/a\
-> set(PRINT_VERSION_MINOR 1)
-' CMakeLists.txt
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ gsed -i '/project(print)/a\
-> set(PRINT_VERSION_MAJOR 0)
-' CMakeLists.txt
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git diff
-diff --git a/CMakeLists.txt b/CMakeLists.txt
-index aa7a323..71b64e3 100644
---- a/CMakeLists.txt
-+++ b/CMakeLists.txt
-@@ -7,6 +7,13 @@ option(BUILD_EXAMPLES "Build examples" OFF)
- option(BUILD_TESTS "Build tests" OFF)
- 
- project(print)
-+set(PRINT_VERSION_MAJOR 0)
-+set(PRINT_VERSION_MINOR 1)
-+set(PRINT_VERSION_PATCH 0)
-+set(PRINT_VERSION_TWEAK 0)
-+set(PRINT_VERSION
-+  ${PRINT_VERSION_MAJOR}.${PRINT_VERSION_MINOR}.${PRINT_VERSION_PATCH}.${PRINT_VERSION_TWEAK})
-+set(PRINT_VERSION_STRING "v${PRINT_VERSION}")
- 
- add_library(print STATIC ${CMAKE_CURRENT_SOURCE_DIR}/sources/print.cpp)
- 
-
-
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ touch DESCRIPTION && edit DESCRIPTION
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ touch ChangeLog.md
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ export DATE="`LANG=en_US date +'%a %b %d %Y'`"
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cat > ChangeLog.md <<EOF
-> * ${DATE} ${GITHUB_USERNAME} <${GITHUB_EMAIL}> 0.1.0.0
-- Initial RPM release
-EOF
-
-
-
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cat > CPackConfig.cmake <<EOF
-> include(InstallRequiredSystemLibraries)
-EOF
-
-
-
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cat >> CPackConfig.cmake <<EOF
-> set(CPACK_PACKAGE_CONTACT ${GITHUB_EMAIL})
-set(CPACK_PACKAGE_VERSION_MAJOR \${PRINT_VERSION_MAJOR})
-set(CPACK_PACKAGE_VERSION_MINOR \${PRINT_VERSION_MINOR})
-set(CPACK_PACKAGE_VERSION_PATCH \${PRINT_VERSION_PATCH})
-set(CPACK_PACKAGE_VERSION_TWEAK \${PRINT_VERSION_TWEAK})
-set(CPACK_PACKAGE_VERSION \${PRINT_VERSION})
-set(CPACK_PACKAGE_DESCRIPTION_FILE \${CMAKE_CURRENT_SOURCE_DIR}/DESCRIPTION)
-set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "static C++ library for printing")
-EOF
-
-
-
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cat >> CPackConfig.cmake <<EOF
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$ gsed -i '/cmake_minimum_required(VERSION 3.4)/a\
 > 
-> set(CPACK_RESOURCE_FILE_LICENSE \${CMAKE_CURRENT_SOURCE_DIR}/LICENSE)
-set(CPACK_RESOURCE_FILE_README \${CMAKE_CURRENT_SOURCE_DIR}/README.md) 
-EOF
-
-
-
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cat >> CPackConfig.cmake <<EOF
+> include("cmake/HunterGate.cmake")
+HunterGate(
+    URL "https://github.com/cpp-pm/hunter/archive/v0.23.251.tar.gz"
+    SHA1 "5659b15dc0884d4b03dbd95710e6a1fa0fc3258d"
+)
+' CMakeLists.txt
+sed: -e выражение #1, символ 77: лишние символы после команды
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$ git rm -rf third-party/gtest
+rm 'third-party/gtest'
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$ gsed -i '/set(PRINT_VERSION_STRING "v\${PRINT_VERSION}")/a\
 > 
-> set(CPACK_RPM_PACKAGE_NAME "print-devel")
-set(CPACK_RPM_PACKAGE_LICENSE "MIT")
-set(CPACK_RPM_PACKAGE_GROUP "print")
-set(CPACK_RPM_CHANGELOG_FILE \${CMAKE_CURRENT_SOURCE_DIR}/ChangeLog.md)
-set(CPACK_RPM_PACKAGE_RELEASE 1)
-EOF
-
-
-
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cat >> CPackConfig.cmake <<EOF
-> 
-> set(CPACK_DEBIAN_PACKAGE_NAME "libprint-dev")
-set(CPACK_DEBIAN_PACKAGE_PREDEPENDS "cmake >= 3.0")
-set(CPACK_DEBIAN_PACKAGE_RELEASE 1)
-EOF
-
-
-
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cat >> CPackConfig.cmake <<EOF
-> 
-> include(CPack)
-EOF
-
-
-
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cat >> CMakeLists.txt <<EOF
-> 
-> include(CPackConfig.cmake)
-EOF
-
-
-
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ gsed -i 's/lab05/lab06/g' README.md
-
-
-
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git add .
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git commit -m"added cpack config"
-[main f5ca419] added cpack config
- 5 files changed, 194 insertions(+), 159 deletions(-)
- create mode 100644 CPackConfig.cmake
- create mode 100644 ChangeLog.md
- create mode 100644 DESCRIPTION
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git tag v0.1.0.0
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git push origin main --tags
-Перечисление объектов: 2965, готово.
-Подсчет объектов: 100% (2965/2965), готово.
-При сжатии изменений используется до 2 потоков
-Сжатие объектов: 100% (2259/2259), готово.
-Запись объектов: 100% (2965/2965), 13.47 МиБ | 3.47 МиБ/с, готово.
-Всего 2965 (изменений 535), повторно использовано 2956 (изменений 532), повторно использовано пакетов 0
-remote: Resolving deltas: 100% (535/535), done.
-remote: error: GH013: Repository rule violations found for refs/tags/v0.1.0.0.
-remote: 
-remote: - GITHUB PUSH PROTECTION
-remote:   —————————————————————————————————————————
-remote:     Resolve the following violations before pushing again
-remote: 
-remote:     - Push cannot contain secrets
-remote: 
-remote:     
-remote:      (?) Learn how to resolve a blocked push
-remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push
-remote:     
-remote:     
-remote:       —— GitHub Personal Access Token ——————————————————————
-remote:        locations:
-remote:          - commit: d9761b6860846de6c653a920d82595366474a101
-remote:            path: README.md:2
-remote:     
-remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
-remote:        https://github.com/ZhenyaBukov/lab06/security/secret-scanning/unblock-secret/2xomUIjouEI0gu2J0Hs6V24I9gt
-remote:     
-remote:     
-remote:       —— GitHub Personal Access Token ——————————————————————
-remote:        locations:
-remote:          - commit: c71fea93dbceb60601f9d9cc6175713b8e8fa5ba
-remote:            path: README.md:3
-remote:     
-remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
-remote:        https://github.com/ZhenyaBukov/lab06/security/secret-scanning/unblock-secret/2xomUJlbuUPzEKRl7V1UPfXhD95
-remote:     
-remote: 
-remote: 
-To github.com:ZhenyaBukov/lab06.git
- ! [rejected]        main -> main (fetch first)
- ! [remote rejected] v0.1.0.0 -> v0.1.0.0 (push declined due to repository rule violations)
-error: не удалось отправить некоторые ссылки в «github.com:ZhenyaBukov/lab06.git»
-подсказка: Updates were rejected because the remote contains work that you do not
-подсказка: have locally. This is usually caused by another repository pushing to
-подсказка: the same ref. If you want to integrate the remote changes, use
-подсказка: 'git pull' before pushing again.
-подсказка: See the 'Note about fast-forwards' in 'git push --help' for details.
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git push origin main --tags
-Перечисление объектов: 2965, готово.
-Подсчет объектов: 100% (2965/2965), готово.
-При сжатии изменений используется до 2 потоков
-Сжатие объектов: 100% (2259/2259), готово.
-Запись объектов: 100% (2965/2965), 13.47 МиБ | 1.64 МиБ/с, готово.
-Всего 2965 (изменений 535), повторно использовано 2956 (изменений 532), повторно использовано пакетов 0
-remote: Resolving deltas: 100% (535/535), done.
-remote: error: GH013: Repository rule violations found for refs/tags/v0.1.0.0.
-remote: 
-remote: - GITHUB PUSH PROTECTION
-remote:   —————————————————————————————————————————
-remote:     Resolve the following violations before pushing again
-remote: 
-remote:     - Push cannot contain secrets
-remote: 
-remote:     
-remote:      (?) Learn how to resolve a blocked push
-remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push
-remote:     
-remote:     
-remote:       —— GitHub Personal Access Token ——————————————————————
-remote:        locations:
-remote:          - commit: d9761b6860846de6c653a920d82595366474a101
-remote:            path: README.md:2
-remote:     
-remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
-remote:        https://github.com/ZhenyaBukov/lab06/security/secret-scanning/unblock-secret/2xomUIjouEI0gu2J0Hs6V24I9gt
-remote:     
-remote: 
-remote: 
-To github.com:ZhenyaBukov/lab06.git
- ! [rejected]        main -> main (fetch first)
- ! [remote rejected] v0.1.0.0 -> v0.1.0.0 (push declined due to repository rule violations)
-error: не удалось отправить некоторые ссылки в «github.com:ZhenyaBukov/lab06.git»
-подсказка: Updates were rejected because the remote contains work that you do not
-подсказка: have locally. This is usually caused by another repository pushing to
-подсказка: the same ref. If you want to integrate the remote changes, use
-подсказка: 'git pull' before pushing again.
-подсказка: See the 'Note about fast-forwards' in 'git push --help' for details.
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git push -f origin main
-Перечисление объектов: 2965, готово.
-Подсчет объектов: 100% (2965/2965), готово.
-При сжатии изменений используется до 2 потоков
-Сжатие объектов: 100% (2259/2259), готово.
-Запись объектов: 100% (2965/2965), 13.47 МиБ | 1.99 МиБ/с, готово.
-Всего 2965 (изменений 535), повторно использовано 2956 (изменений 532), повторно использовано пакетов 0
-remote: Resolving deltas: 100% (535/535), done.
-remote: error: GH013: Repository rule violations found for refs/heads/main.
-remote: 
-remote: - GITHUB PUSH PROTECTION
-remote:   —————————————————————————————————————————
-remote:     Resolve the following violations before pushing again
-remote: 
-remote:     - Push cannot contain secrets
-remote: 
-remote:     
-remote:      (?) Learn how to resolve a blocked push
-remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push
-remote:     
-remote:     
-remote:       —— GitHub Personal Access Token ——————————————————————
-remote:        locations:
-remote:          - commit: d9761b6860846de6c653a920d82595366474a101
-remote:            path: README.md:2
-remote:     
-remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
-remote:        https://github.com/ZhenyaBukov/lab06/security/secret-scanning/unblock-secret/2xomUIjouEI0gu2J0Hs6V24I9gt
-remote:     
-remote: 
-remote: 
-To github.com:ZhenyaBukov/lab06.git
- ! [remote rejected] main -> main (push declined due to repository rule violations)
-error: не удалось отправить некоторые ссылки в «github.com:ZhenyaBukov/lab06.git»
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git push -f origin main
-Перечисление объектов: 2965, готово.
-Подсчет объектов: 100% (2965/2965), готово.
-При сжатии изменений используется до 2 потоков
-Сжатие объектов: 100% (2259/2259), готово.
-Запись объектов: 100% (2965/2965), 13.47 МиБ | 2.62 МиБ/с, готово.
-Всего 2965 (изменений 535), повторно использовано 2956 (изменений 532), повторно использовано пакетов 0
-remote: Resolving deltas: 100% (535/535), done.
-To github.com:ZhenyaBukov/lab06.git
- + 11e22b9...f5ca419 main -> main (forced update)
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ travis login --auto
-
-  ________                                 __
- /        |                               /  |
- ########/ ______    ______    __     __  ##/    _______
-    ## |  /      \  /      \  /  \   /  | /  |  /       |
-    ## | /######  | ######  | ##  \ /##/  ## | /#######/
-    ## | ## |  ##/  /    ## |  ##  /##/   ## | ##      \
-    ## | ## |      /####### |   ## ##/    ## |  ######  |
-    ## | ## |      ##    ## |    ###/     ## | /     ##/
-    ##/  ##/        #######/      #/      ##/  #######/
-
-    TRajectory Analyzer and VISualizer  -  Open-source free software under GNU GPL v3
-
-    Copyright (c) Martin Brehm      (2009-2022), University of Halle (Saale)
-                  Martin Thomas     (2012-2022)
-                  Sascha Gehrke     (2016-2022), University of Bonn
-                  Barbara Kirchner  (2009-2022), University of Bonn
-
-    http://www.travis-analyzer.de
-
-    Please cite: J. Chem. Phys. 2020, 152 (16), 164105.         (DOI 10.1063/5.0005078 )
-                 J. Chem. Inf. Model. 2011, 51 (8), 2007-2023.  (DOI 10.1021/ci200217w )
-
-    There is absolutely no warranty on any results obtained from TRAVIS.
-
- #  Running on zhenya-VirtualBox at Fri May 30 16:50:05 2025 (PID 50266)
- #  Running in /home/zhenya/ZhenyaBukov/workspace/projects/lab06
- #  Version: Jul 29 2022, built at Jan 14 2023, 12:32:45, compiler "12.2.0", GCC 12.2.0
- #  Target platform: Linux, __cplusplus=201703L, Compile flags: NEW_CHARGEVAR DEBUG_ARRAYS 
- #  Compiled with OpenMP, but USE_OMP not switched on in "config.h"!
- #  Machine: x86_64, char=1b, int=4b, long=8b, addr=8b, 0xA0B0C0D0=D0,C0,B0,A0.
- #  Home: /home/zhenya,  Executable: /usr/bin/travis
- #  Input from terminal,  Output to terminal
-
-    >>> Please use a color scheme with dark background or specify "-nocolor"! <<<
-
-    Loading configuration from /home/zhenya/.travis.conf ...
-
-Unknown parameter: "login".
-
-    List of supported command line options:
-
-      -p <file>       Load position data from specified trajectory file.
-                      Format may be *.xyz, *.pdb, *.lmp (LAMMPS), HISTORY (DLPOLY), POSCAR/XDATCAR (VASP),
-                                    *.gro, *.dcd, or *.prmtop/*.mdcrd (Amber).
-                      The bqb format (*.bqb, *.btr, *.emp, *.blist) as well as *.voronoi are also supported.
-      -vel <file>     Read atom velocities from a file in addition to the position trajectory.
-                      Currently, only .xyz format is supported for velocity data.
-      -i <file>       Read input from specified text file.
-      -c <file>       Read and execute control file (experimental).
-      cubetool        Execute the CubeTool for modifying Gaussian Cube files.
-      -sankey <file>  Create Sankey diagrams (file name is optional).
-      -ramanfrompola  Compute Raman spectra from existing polarizability time series.
-      (de-)compress   Start built-in bqbtool (compress trajectories to BQB format).
-      check           Check BQB file integrity.
-
-      -config <file>  Load the specified configuration file.
-      -stream         Treat input trajectory as a stream (e.g. named pipe): No fseek, etc.
-      -showconf       Show a tree structure of the configuration file.
-      -writeconf      Write the default configuration file, including all defines values.
-
-      -verbose        Show detailed information about what's going on.
-      -nocolor        Execute TRAVIS in monochrome mode (suitable for white background).
-      -dimcolor       Use dim instead of bright colors.
-
-      -credits        Display a list of persons who contributed to TRAVIS.
-      -help, -?       Shows this help.
-
-    If only one argument is specified, it is assumed to be the name of a trajectory file.
-    If no argument is specified at all, TRAVIS asks for the trajectory file to open.
-
-    Note: To show a list of all persons who contributed to TRAVIS,
-          please add "-credits" to your command line arguments, or set the
-          variable "SHOWCREDITS" to "TRUE" in your travis.conf file.
-
-    Source code from other projects used in TRAVIS:
-      - lmfit     from Joachim Wuttke
-      - kiss_fft  from Mark Borgerding
-      - voro++    from Chris Rycroft
-
-    http://www.travis-analyzer.de
-
-    Please cite all of the following articles for the analyses you have used:
-
-  * For TRAVIS in general:
-
-    "TRAVIS - A Free Analyzer for Trajectories from Molecular Simulation",
-    M. Brehm, M. Thomas, S. Gehrke, B. Kirchner; J. Chem. Phys. 2020, 152 (16), 164105.   (DOI 10.1063/5.0005078 )
-
-    "TRAVIS - A Free Analyzer and Visualizer for Monte Carlo and Molecular Dynamics Trajectories",
-    M. Brehm, B. Kirchner; J. Chem. Inf. Model. 2011, 51 (8), pp 2007-2023.   (DOI 10.1021/ci200217w )
-
-*** The End ***
-
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cmake -H. -B_build
+> hunter_add_package(GTest)
+find_package(GTest CONFIG REQUIRED)
+' CMakeLists.txt
+sed: -e выражение #1, символ 54: лишние символы после команды
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$ gsed -i 's/add_subdirectory(third-party/gtest)//' CMakeLists.txt
+sed: -e выражение #1, символ 39: неизвестный модификатор к `s'
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$ gsed -i 's/gtest_main/GTest::main/' CMakeLists.txt
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$ cmake -H. -B_builds -DBUILD_TESTS=ON
 CMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
   Compatibility with CMake < 3.5 will be removed from a future version of
   CMake.
@@ -398,32 +71,31 @@ CMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
 -- Check for working CXX compiler: /usr/bin/c++ - skipped
 -- Detecting CXX compile features
 -- Detecting CXX compile features - done
--- Configuring done (0.5s)
--- Generating done (0.0s)
--- Build files have been written to: /home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cmake --build _build
-[ 50%] Building CXX object CMakeFiles/print.dir/sources/print.cpp.o
-In file included from /home/zhenya/ZhenyaBukov/workspace/projects/lab06/sources/print.cpp:2:
-/home/zhenya/ZhenyaBukov/workspace/projects/lab06/include/print.hpp:6:6: error: default argument given for parameter 2 of ‘void print(const std::string&, std::ostream&)’ [-fpermissive]
-    6 | void print(const std::string& text, std::ostream& out = std::cout);
-      |      ^~~~~
-In file included from /home/zhenya/ZhenyaBukov/workspace/projects/lab06/sources/print.cpp:1:
-/home/zhenya/ZhenyaBukov/workspace/projects/lab06/include/print.hpp:6:6: note: previous specification in ‘void print(const std::string&, std::ostream&)’ here
-    6 | void print(const std::string& text, std::ostream& out = std::cout);
-      |      ^~~~~
-gmake[2]: *** [CMakeFiles/print.dir/build.make:76: CMakeFiles/print.dir/sources/print.cpp.o] Ошибка 1
-gmake[1]: *** [CMakeFiles/Makefile2:83: CMakeFiles/print.dir/all] Ошибка 2
-gmake: *** [Makefile:156: all] Ошибка 2
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cd _build
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06/_build$ cpack -G "TGZ"
-CPack: Create package using TGZ
-CPack: Install projects
-CPack: - Run preinstall target for: print
-CPack Error: Problem running install command: /usr/bin/cmake --build . --target "preinstall"
-Please check /home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/_CPack_Packages/Linux/TGZ/PreinstallOutput.log for errors
-CPack Error: Error when generating package: print
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06/_build$ cd ..
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cmake -H. -B_build -DCPACK_GENERATOR="TGZ"
+CMake Error at CMakeLists.txt:48 (add_subdirectory):
+  add_subdirectory given source "third-party/gtest" which is not an existing
+  directory.
+
+
+-- Configuring incomplete, errors occurred!
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$ cmake --build _builds
+gmake: Makefile: Нет такого файла или каталога
+gmake: *** Нет правила для сборки цели «Makefile».  Останов.
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$ cmake --build _builds --target test
+gmake: Makefile: Нет такого файла или каталога
+gmake: *** Нет правила для сборки цели «Makefile».  Останов.
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$ ls -la $HOME/.hunter
+ls: невозможно получить доступ к '/home/zhenya/.hunter': Нет такого файла или каталога
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$ git clone https://github.com/cpp-pm/hunter $HOME/projects/hunter
+Клонирование в «/home/zhenya/projects/hunter»...
+remote: Enumerating objects: 54597, done.
+remote: Counting objects: 100% (148/148), done.
+remote: Compressing objects: 100% (100/100), done.
+remote: Total 54597 (delta 58), reused 72 (delta 9), pack-reused 54449 (from 2)
+Получение объектов: 100% (54597/54597), 14.07 МиБ | 2.65 МиБ/с, готово.
+Определение изменений: 100% (34134/34134), готово.
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$ export HUNTER_ROOT=$HOME/projects/hunter
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$ rm -rf _builds
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$ cmake -H. -B_builds -DBUILD_TESTS=ON
 CMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
   Compatibility with CMake < 3.5 will be removed from a future version of
   CMake.
@@ -432,24 +104,696 @@ CMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
   CMake that the project does not need compatibility with older versions.
 
 
--- Configuring done (0.0s)
+-- The C compiler identification is GNU 13.3.0
+-- The CXX compiler identification is GNU 13.3.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+CMake Error at CMakeLists.txt:48 (add_subdirectory):
+  add_subdirectory given source "third-party/gtest" which is not an existing
+  directory.
+
+
+-- Configuring incomplete, errors occurred!
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$ cmake --build _builds
+gmake: Makefile: Нет такого файла или каталога
+gmake: *** Нет правила для сборки цели «Makefile».  Останов.
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$ cmake --build _builds --target test
+gmake: Makefile: Нет такого файла или каталога
+gmake: *** Нет правила для сборки цели «Makefile».  Останов.
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$ cat $HUNTER_ROOT/cmake/configs/default.cmake | grep GTest
+  hunter_default_version(GTest VERSION 1.7.0-hunter-6)
+  hunter_default_version(GTest VERSION 1.15.2)
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$ cat $HUNTER_ROOT/cmake/projects/GTest/hunter.cmake
+# Copyright (c) 2013, Ruslan Baratov
+# All rights reserved.
+
+# !!! DO NOT PLACE HEADER GUARDS HERE !!!
+
+include(hunter_add_version)
+include(hunter_cacheable)
+include(hunter_download)
+include(hunter_pick_scheme)
+include(hunter_cmake_args)
+
+hunter_add_version(
+    PACKAGE_NAME
+    GTest
+    VERSION
+    "1.7.0-hunter"
+    URL
+    "https://github.com/hunter-packages/gtest/archive/v1.7.0-hunter.tar.gz"
+    SHA1
+    1ed1c26d11fb592056c1cb912bd3c784afa96eaa
+)
+
+hunter_add_version(
+    PACKAGE_NAME
+    GTest
+    VERSION
+    "1.7.0-hunter-1"
+    URL
+    "https://github.com/hunter-packages/gtest/archive/v1.7.0-hunter-1.tar.gz"
+    SHA1
+    0cb1dcf75e144ad052d3f1e4923a7773bf9b494f
+)
+
+hunter_add_version(
+    PACKAGE_NAME
+    GTest
+    VERSION
+    "1.7.0-hunter-2"
+    URL
+    "https://github.com/hunter-packages/gtest/archive/v1.7.0-hunter-2.tar.gz"
+    SHA1
+    e62b2ef70308f63c32c560f7b6e252442eed4d57
+)
+
+hunter_add_version(
+    PACKAGE_NAME
+    GTest
+    VERSION
+    "1.7.0-hunter-3"
+    URL
+    "https://github.com/hunter-packages/gtest/archive/v1.7.0-hunter-3.tar.gz"
+    SHA1
+    fea7d3020e20f059255484c69755753ccadf6362
+)
+
+hunter_add_version(
+    PACKAGE_NAME
+    GTest
+    VERSION
+    "1.7.0-hunter-4"
+    URL
+    "https://github.com/hunter-packages/gtest/archive/v1.7.0-hunter-4.tar.gz"
+    SHA1
+    9b439c0c25437a083957b197ac6905662a5d901b
+)
+
+hunter_add_version(
+    PACKAGE_NAME
+    GTest
+    VERSION
+    "1.7.0-hunter-5"
+    URL
+    "https://github.com/hunter-packages/gtest/archive/v1.7.0-hunter-5.tar.gz"
+    SHA1
+    796804df3facb074087a4d8ba6f652e5ac69ad7f
+)
+
+hunter_add_version(
+    PACKAGE_NAME
+    GTest
+    VERSION
+    "1.7.0-hunter-6"
+    URL
+    "https://github.com/hunter-packages/gtest/archive/v1.7.0-hunter-6.tar.gz"
+    SHA1
+    64b93147abe287da8fe4e18cfd54ba9297dafb82
+)
+
+hunter_add_version(
+    PACKAGE_NAME
+    GTest
+    VERSION
+    "1.7.0-hunter-7"
+    URL
+    "https://github.com/hunter-packages/gtest/archive/v1.7.0-hunter-7.tar.gz"
+    SHA1
+    19b5c98747768bcd0622714f2ed40f17aee406b2
+)
+
+hunter_add_version(
+    PACKAGE_NAME
+    GTest
+    VERSION
+    "1.7.0-hunter-8"
+    URL
+    "https://github.com/hunter-packages/gtest/archive/v1.7.0-hunter-8.tar.gz"
+    SHA1
+    ac4d2215aa1b1d745a096e5e3b2dbe0c0f229ea5
+)
+
+hunter_add_version(
+    PACKAGE_NAME
+    GTest
+    VERSION
+    "1.7.0-hunter-9"
+    URL
+    "https://github.com/hunter-packages/gtest/archive/v1.7.0-hunter-9.tar.gz"
+    SHA1
+    8a47fe9c4e550f4ed0e2c05388dd291a059223d9
+)
+
+hunter_add_version(
+    PACKAGE_NAME
+    GTest
+    VERSION
+    "1.7.0-hunter-10"
+    URL
+    "https://github.com/hunter-packages/gtest/archive/v1.7.0-hunter-10.tar.gz"
+    SHA1
+    374e6dbe8619ab467c6b1a0b470a598407b172e9
+)
+
+hunter_add_version(
+    PACKAGE_NAME
+    GTest
+    VERSION
+    "1.7.0-hunter-11"
+    URL
+    "https://github.com/hunter-packages/gtest/archive/v1.7.0-hunter-11.tar.gz"
+    SHA1
+    c6ae948ca2bea1d734af01b1069491b00933ed31
+)
+
+hunter_add_version(
+    PACKAGE_NAME
+    GTest
+    VERSION
+    1.8.0-hunter-p2
+    URL
+    "https://github.com/hunter-packages/googletest/archive/1.8.0-hunter-p2.tar.gz"
+    SHA1
+    93148cb8850abe78b76ed87158fdb6b9c48e38c4
+)
+
+hunter_add_version(
+    PACKAGE_NAME
+    GTest
+    VERSION
+    1.8.0-hunter-p5
+    URL https://github.com/hunter-packages/googletest/archive/1.8.0-hunter-p5.tar.gz
+    SHA1 3325aa4fc8b30e665c9f73a60f19387b7db36f85
+)
+
+hunter_add_version(
+    PACKAGE_NAME
+    GTest
+    VERSION
+    1.8.0-hunter-p6
+    URL
+    "https://github.com/hunter-packages/googletest/archive/1.8.0-hunter-p6.tar.gz"
+    SHA1
+    f57096bd01c6f8cbef043b312d4d1e82f29648b6
+)
+
+hunter_add_version(
+    PACKAGE_NAME
+    GTest
+    VERSION
+    1.8.0-hunter-p7
+    URL
+    "https://github.com/hunter-packages/googletest/archive/1.8.0-hunter-p7.tar.gz"
+    SHA1
+    4fe083a96d7597f7dce6f453dca01e1d94a1e45b
+)
+
+hunter_add_version(
+    PACKAGE_NAME
+    GTest
+    VERSION
+    1.8.0-hunter-p8
+    URL
+    "https://github.com/hunter-packages/googletest/archive/1.8.0-hunter-p8.tar.gz"
+    SHA1
+    1cdd396b20c8d29f7ea08baaa49673b1c261f545
+)
+
+hunter_add_version(
+    PACKAGE_NAME
+    GTest
+    VERSION
+    1.8.0-hunter-p9
+    URL
+    "https://github.com/hunter-packages/googletest/archive/1.8.0-hunter-p9.tar.gz"
+    SHA1
+    a345f16cb610e0b5dfa7778dc2852b784cfede5b
+)
+
+hunter_add_version(
+    PACKAGE_NAME
+    GTest
+    VERSION
+    1.8.0-hunter-p10
+    URL
+    "https://github.com/hunter-packages/googletest/archive/1.8.0-hunter-p10.tar.gz"
+    SHA1
+    1d92c9f51af756410843b13f8c4e4df09e235394
+)
+
+hunter_add_version(
+    PACKAGE_NAME
+    GTest
+    VERSION
+    "1.8.0-hunter-p11"
+    URL
+    "https://github.com/hunter-packages/googletest/archive/1.8.0-hunter-p11.tar.gz"
+    SHA1
+    76c6aec038f7d7258bf5c4f45c4817b34039d285
+)
+
+hunter_add_version(
+    PACKAGE_NAME
+    GTest
+    VERSION
+    "1.8.1"
+    URL
+    "https://github.com/google/googletest/archive/release-1.8.1.tar.gz"
+    SHA1
+    152b849610d91a9dfa1401293f43230c2e0c33f8
+)
+
+hunter_add_version(
+    PACKAGE_NAME
+    GTest
+    VERSION
+    "1.10.0"
+    URL
+    "https://github.com/google/googletest/archive/release-1.10.0.tar.gz"
+    SHA1
+    9c89be7df9c5e8cb0bc20b3c4b39bf7e82686770
+)
+
+hunter_add_version(
+    PACKAGE_NAME
+    GTest
+    VERSION
+    "1.10.0-p0"
+    URL
+    "https://github.com/hunter-packages/googletest/archive/v1.10.0-p0.tar.gz"
+    SHA1
+    f7c72be12120e018f53cda0e0daa26fab5da7dfc
+)
+
+hunter_add_version(
+    PACKAGE_NAME
+    GTest
+    VERSION
+    "1.10.0-p1"
+    URL
+    "https://github.com/hunter-packages/googletest/archive/v1.10.0-p1.tar.gz"
+    SHA1
+    06a1f667f200ff94d38b608e44c3c8061c7b8f2f
+)
+
+hunter_add_version(
+    PACKAGE_NAME
+    GTest
+    VERSION
+    "1.11.0"
+    URL
+    "https://github.com/google/googletest/archive/release-1.11.0.tar.gz"
+    SHA1
+    7b100bb68db8df1060e178c495f3cbe941c9b058
+)
+
+hunter_add_version(
+    PACKAGE_NAME
+    GTest
+    VERSION
+    "1.12.1"
+    URL
+    "https://github.com/google/googletest/archive/release-1.12.1.tar.gz"
+    SHA1
+    cdddd449d4e3aa7bd421d4519c17139ea1890fe7
+)
+
+hunter_add_version(
+    PACKAGE_NAME
+    GTest
+    VERSION
+    "1.13.0"
+    URL
+    "https://github.com/google/googletest/archive/v1.13.0.tar.gz"
+    SHA1
+    bfa4b5131b6eaac06962c251742c96aab3f7aa78
+)
+
+hunter_add_version(
+    PACKAGE_NAME
+    GTest
+    VERSION
+    "1.14.0"
+    URL
+    "https://github.com/google/googletest/archive/v1.14.0.tar.gz"
+    SHA1
+    2b28c2a3a30d86b1759543ef61fac3c4d69f8c4c
+)
+
+hunter_add_version(
+        PACKAGE_NAME
+        GTest
+        VERSION
+        "1.15.2"
+        URL
+        "https://github.com/google/googletest/archive/v1.15.2.tar.gz"
+        SHA1
+        568d58e26bd4e838449ca7ab8ebc152b3cbd210d
+)
+
+
+if(HUNTER_GTest_VERSION VERSION_LESS 1.8.0 OR HUNTER_GTest_VERSION VERSION_GREATER_EQUAL 1.11.0)
+  set(_gtest_license "LICENSE")
+else()
+  set(_gtest_license "googletest/LICENSE")
+endif()
+
+# gtest_force_shared_crt prevents GoogleTest from modifying options
+# rather than forcing it to use shared libraries
+hunter_cmake_args(
+    GTest
+    CMAKE_ARGS
+    HUNTER_INSTALL_LICENSE_FILES=${_gtest_license}
+    gtest_force_shared_crt=TRUE
+)
+
+hunter_pick_scheme(DEFAULT url_sha1_cmake)
+hunter_cacheable(GTest)
+hunter_download(PACKAGE_NAME GTest PACKAGE_INTERNAL_DEPS_ID 1)
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$ mkdir cmake/Hunter
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$ cat > cmake/Hunter/config.cmake <<EOF
+> hunter_config(GTest VERSION 1.7.0-hunter-9)
+EOF
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$ mkdir demo
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$ cat > demo/main.cpp <<EOF
+> #include <print.hpp>
+
+#include <cstdlib>
+
+int main(int argc, char* argv[])
+{
+  const char* log_path = std::getenv("LOG_PATH");
+  if (log_path == nullptr)
+  {
+    std::cerr << "undefined environment variable: LOG_PATH" << std::endl;
+    return 1;
+  }
+  std::string text;
+  while (std::cin >> text)
+  {
+    std::ofstream out{log_path, std::ios_base::app};
+    print(text, out);
+    out << std::endl;
+  }
+}
+EOF
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$ gsed -i '/endif()/a\
+> 
+> add_executable(demo ${CMAKE_CURRENT_SOURCE_DIR}/demo/main.cpp)
+target_link_libraries(demo print)
+install(TARGETS demo RUNTIME DESTINATION bin)
+' CMakeLists.txt
+sed: -e выражение #1, символ 105: лишние символы после команды
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$ mkdir tools
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$ git submodule add https://github.com/ruslo/polly tools/polly
+Клонирование в «/home/zhenya/ZhenyaBukov/workspace/projects/lab07/tools/polly»...
+remote: Enumerating objects: 6578, done.
+remote: Counting objects: 100% (32/32), done.
+remote: Compressing objects: 100% (15/15), done.
+remote: Total 6578 (delta 21), reused 20 (delta 17), pack-reused 6546 (from 1)
+Получение объектов: 100% (6578/6578), 1.68 МиБ | 1.33 МиБ/с, готово.
+Определение изменений: 100% (4551/4551), готово.
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$ tools/polly/bin/polly.py --test
+Python version: 3.12
+Build dir: /home/zhenya/ZhenyaBukov/workspace/projects/lab07/_builds/default
+Execute command: [
+  `which`
+  `cmake`
+]
+
+[/home/zhenya/ZhenyaBukov/workspace/projects/lab07]> "which" "cmake"
+
+/usr/bin/cmake
+Execute command: [
+  `cmake`
+  `--version`
+]
+
+[/home/zhenya/ZhenyaBukov/workspace/projects/lab07]> "cmake" "--version"
+
+cmake version 3.28.3
+
+CMake suite maintained and supported by Kitware (kitware.com/cmake).
+Execute command: [
+  `cmake`
+  `-H.`
+  `-B/home/zhenya/ZhenyaBukov/workspace/projects/lab07/_builds/default`
+  `-DCMAKE_TOOLCHAIN_FILE=/home/zhenya/ZhenyaBukov/workspace/projects/lab07/tools/polly/default.cmake`
+]
+
+[/home/zhenya/ZhenyaBukov/workspace/projects/lab07]> "cmake" "-H." "-B/home/zhenya/ZhenyaBukov/workspace/projects/lab07/_builds/default" "-DCMAKE_TOOLCHAIN_FILE=/home/zhenya/ZhenyaBukov/workspace/projects/lab07/tools/polly/default.cmake"
+
+CMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.5 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value or use a ...<max> suffix to tell
+  CMake that the project does not need compatibility with older versions.
+
+
+-- [polly] Used toolchain: Default
+-- The C compiler identification is GNU 13.3.0
+-- The CXX compiler identification is GNU 13.3.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (0.4s)
 -- Generating done (0.0s)
--- Build files have been written to: /home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cmake --build _build --target package
+-- Build files have been written to: /home/zhenya/ZhenyaBukov/workspace/projects/lab07/_builds/default
+Execute command: [
+  `cmake`
+  `--build`
+  `/home/zhenya/ZhenyaBukov/workspace/projects/lab07/_builds/default`
+  `--`
+]
+
+[/home/zhenya/ZhenyaBukov/workspace/projects/lab07]> "cmake" "--build" "/home/zhenya/ZhenyaBukov/workspace/projects/lab07/_builds/default" "--"
+
 [ 50%] Building CXX object CMakeFiles/print.dir/sources/print.cpp.o
-In file included from /home/zhenya/ZhenyaBukov/workspace/projects/lab06/sources/print.cpp:2:
-/home/zhenya/ZhenyaBukov/workspace/projects/lab06/include/print.hpp:6:6: error: default argument given for parameter 2 of ‘void print(const std::string&, std::ostream&)’ [-fpermissive]
+In file included from /home/zhenya/ZhenyaBukov/workspace/projects/lab07/sources/print.cpp:2:
+/home/zhenya/ZhenyaBukov/workspace/projects/lab07/include/print.hpp:6:6: error: default argument given for parameter 2 of ‘void print(const std::string&, std::ostream&)’ [-fpermissive]
     6 | void print(const std::string& text, std::ostream& out = std::cout);
       |      ^~~~~
-In file included from /home/zhenya/ZhenyaBukov/workspace/projects/lab06/sources/print.cpp:1:
-/home/zhenya/ZhenyaBukov/workspace/projects/lab06/include/print.hpp:6:6: note: previous specification in ‘void print(const std::string&, std::ostream&)’ here
+In file included from /home/zhenya/ZhenyaBukov/workspace/projects/lab07/sources/print.cpp:1:
+/home/zhenya/ZhenyaBukov/workspace/projects/lab07/include/print.hpp:6:6: note: previous specification in ‘void print(const std::string&, std::ostream&)’ here
     6 | void print(const std::string& text, std::ostream& out = std::cout);
       |      ^~~~~
 gmake[2]: *** [CMakeFiles/print.dir/build.make:76: CMakeFiles/print.dir/sources/print.cpp.o] Ошибка 1
 gmake[1]: *** [CMakeFiles/Makefile2:83: CMakeFiles/print.dir/all] Ошибка 2
 gmake: *** [Makefile:156: all] Ошибка 2
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ mkdir artifacts
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ mv _build/*.tar.gz artifacts
-mv: не удалось выполнить stat для '_build/*.tar.gz': Нет такого файла или каталога
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lzzzzzhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ 
+Command exit with status "2": [/home/zhenya/ZhenyaBukov/workspace/projects/lab07]> "cmake" "--build" "/home/zhenya/ZhenyaBukov/workspace/projects/lab07/_builds/default" "--"
+
+Log: /home/zhenya/ZhenyaBukov/workspace/projects/lab07/_logs/polly/default/log.txt
+*** FAILED ***
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$ tools/polly/bin/polly.py --install
+Python version: 3.12
+Build dir: /home/zhenya/ZhenyaBukov/workspace/projects/lab07/_builds/default
+Execute command: [
+  `which`
+  `cmake`
+]
+
+[/home/zhenya/ZhenyaBukov/workspace/projects/lab07]> "which" "cmake"
+
+/usr/bin/cmake
+Execute command: [
+  `cmake`
+  `--version`
+]
+
+[/home/zhenya/ZhenyaBukov/workspace/projects/lab07]> "cmake" "--version"
+
+cmake version 3.28.3
+
+CMake suite maintained and supported by Kitware (kitware.com/cmake).
+
+== WARNING ==
+
+Looks like cmake arguments changed. You have two options to fix it:
+  * Remove build directory completely by adding '--clear' (works 100%)
+  * Run configure again by adding '--reconfig' (you must understand how CMake cache variables works/updated)
+
+- "cmake" "-H." "-B/home/zhenya/ZhenyaBukov/workspace/projects/lab07/_builds/default" "-DCMAKE_TOOLCHAIN_FILE=/home/zhenya/ZhenyaBukov/workspace/projects/lab07/tools/polly/default.cmake"
++ "cmake" "-H." "-B/home/zhenya/ZhenyaBukov/workspace/projects/lab07/_builds/default" "-DCMAKE_TOOLCHAIN_FILE=/home/zhenya/ZhenyaBukov/workspace/projects/lab07/tools/polly/default.cmake" "-DCMAKE_INSTALL_PREFIX=/home/zhenya/ZhenyaBukov/workspace/projects/lab07/_install/default"
+?                                                                                                                                                                                         ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$ tools/polly/bin/polly.py --toolchain clang-cxx14
+Python version: 3.12
+Build dir: /home/zhenya/ZhenyaBukov/workspace/projects/lab07/_builds/clang-cxx14
+Execute command: [
+  `which`
+  `cmake`
+]
+
+[/home/zhenya/ZhenyaBukov/workspace/projects/lab07]> "which" "cmake"
+
+/usr/bin/cmake
+Execute command: [
+  `cmake`
+  `--version`
+]
+
+[/home/zhenya/ZhenyaBukov/workspace/projects/lab07]> "cmake" "--version"
+
+cmake version 3.28.3
+
+CMake suite maintained and supported by Kitware (kitware.com/cmake).
+Execute command: [
+  `cmake`
+  `-H.`
+  `-B/home/zhenya/ZhenyaBukov/workspace/projects/lab07/_builds/clang-cxx14`
+  `-GUnix Makefiles`
+  `-DCMAKE_TOOLCHAIN_FILE=/home/zhenya/ZhenyaBukov/workspace/projects/lab07/tools/polly/clang-cxx14.cmake`
+]
+
+[/home/zhenya/ZhenyaBukov/workspace/projects/lab07]> "cmake" "-H." "-B/home/zhenya/ZhenyaBukov/workspace/projects/lab07/_builds/clang-cxx14" "-GUnix Makefiles" "-DCMAKE_TOOLCHAIN_FILE=/home/zhenya/ZhenyaBukov/workspace/projects/lab07/tools/polly/clang-cxx14.cmake"
+
+CMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.5 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value or use a ...<max> suffix to tell
+  CMake that the project does not need compatibility with older versions.
+
+
+-- [polly] Used toolchain: clang / c++14 support
+
+clang not found
+
+CMake Error at tools/polly/utilities/polly_fatal_error.cmake:10 (message):
+Call Stack (most recent call first):
+  tools/polly/compiler/clang.cmake:23 (polly_fatal_error)
+  tools/polly/clang-cxx14.cmake:20 (include)
+  /usr/share/cmake-3.28/Modules/CMakeDetermineSystem.cmake:170 (include)
+  CMakeLists.txt:9 (project)
+
+
+CMake Error: CMake was unable to find a build program corresponding to "Unix Makefiles".  CMAKE_MAKE_PROGRAM is not set.  You probably need to select a different build tool.
+-- Configuring incomplete, errors occurred!
+Command exit with status "1": [/home/zhenya/ZhenyaBukov/workspace/projects/lab07]> "cmake" "-H." "-B/home/zhenya/ZhenyaBukov/workspace/projects/lab07/_builds/clang-cxx14" "-GUnix Makefiles" "-DCMAKE_TOOLCHAIN_FILE=/home/zhenya/ZhenyaBukov/workspace/projects/lab07/tools/polly/clang-cxx14.cmake"
+
+Log: /home/zhenya/ZhenyaBukov/workspace/projects/lab07/_logs/polly/clang-cxx14/log.txt
+*** FAILED ***
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$ git push origin main
+To github.com:ZhenyaBukov/lab07.git
+ ! [rejected]        main -> main (fetch first)
+error: не удалось отправить некоторые ссылки в «github.com:ZhenyaBukov/lab07.git»
+подсказка: Updates were rejected because the remote contains work that you do not
+подсказка: have locally. This is usually caused by another repository pushing to
+подсказка: the same ref. If you want to integrate the remote changes, use
+подсказка: 'git pull' before pushing again.
+подсказка: See the 'Note about fast-forwards' in 'git push --help' for details.
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$ git push -f origin main
+Перечисление объектов: 2968, готово.
+Подсчет объектов: 100% (2968/2968), готово.
+При сжатии изменений используется до 2 потоков
+Сжатие объектов: 100% (2257/2257), готово.
+Запись объектов: 100% (2968/2968), 13.47 МиБ | 1.80 МиБ/с, готово.
+Всего 2968 (изменений 537), повторно использовано 2968 (изменений 537), повторно использовано пакетов 0
+remote: Resolving deltas: 100% (537/537), done.
+remote: error: GH013: Repository rule violations found for refs/heads/main.
+remote: 
+remote: - GITHUB PUSH PROTECTION
+remote:   —————————————————————————————————————————
+remote:     Resolve the following violations before pushing again
+remote: 
+remote:     - Push cannot contain secrets
+remote: 
+remote:     
+remote:      (?) Learn how to resolve a blocked push
+remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push
+remote:     
+remote:     
+remote:       —— GitHub Personal Access Token ——————————————————————
+remote:        locations:
+remote:          - commit: d9761b6860846de6c653a920d82595366474a101
+remote:            path: README.md:2
+remote:     
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
+remote:        https://github.com/ZhenyaBukov/lab07/security/secret-scanning/unblock-secret/2xopggDMohaxSp4LjWVTG5vCDAo
+remote:     
+remote:     
+remote:       —— GitHub Personal Access Token ——————————————————————
+remote:        locations:
+remote:          - commit: c71fea93dbceb60601f9d9cc6175713b8e8fa5ba
+remote:            path: README.md:3
+remote:     
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
+remote:        https://github.com/ZhenyaBukov/lab07/security/secret-scanning/unblock-secret/2xopgbX2Rv0gsnrIwdh74R7tYPY
+remote:     
+remote: 
+remote: 
+To github.com:ZhenyaBukov/lab07.git
+ ! [remote rejected] main -> main (push declined due to repository rule violations)
+error: не удалось отправить некоторые ссылки в «github.com:ZhenyaBukov/lab07.git»
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$ git push -f origin main
+Перечисление объектов: 2968, готово.
+Подсчет объектов: 100% (2968/2968), готово.
+При сжатии изменений используется до 2 потоков
+Сжатие объектов: 100% (2257/2257), готово.
+Запись объектов: 100% (2968/2968), 13.47 МиБ | 1.58 МиБ/с, готово.
+Всего 2968 (изменений 537), повторно использовано 2968 (изменений 537), повторно использовано пакетов 0
+remote: Resolving deltas: 100% (537/537), done.
+remote: error: GH013: Repository rule violations found for refs/heads/main.
+remote: 
+remote: - GITHUB PUSH PROTECTION
+remote:   —————————————————————————————————————————
+remote:     Resolve the following violations before pushing again
+remote: 
+remote:     - Push cannot contain secrets
+remote: 
+remote:     
+remote:      (?) Learn how to resolve a blocked push
+remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push
+remote:     
+remote:     
+remote:       —— GitHub Personal Access Token ——————————————————————
+remote:        locations:
+remote:          - commit: d9761b6860846de6c653a920d82595366474a101
+remote:            path: README.md:2
+remote:     
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
+remote:        https://github.com/ZhenyaBukov/lab07/security/secret-scanning/unblock-secret/2xopggDMohaxSp4LjWVTG5vCDAo
+remote:     
+remote: 
+remote: 
+To github.com:ZhenyaBukov/lab07.git
+ ! [remote rejected] main -> main (push declined due to repository rule violations)
+error: не удалось отправить некоторые ссылки в «github.com:ZhenyaBukov/lab07.git»
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$ git push origin main
+To github.com:ZhenyaBukov/lab07.git
+ ! [rejected]        main -> main (fetch first)
+error: не удалось отправить некоторые ссылки в «github.com:ZhenyaBukov/lab07.git»
+подсказка: Updates were rejected because the remote contains work that you do not
+подсказка: have locally. This is usually caused by another repository pushing to
+подсказка: the same ref. If you want to integrate the remote changes, use
+подсказка: 'git pull' before pushing again.
+подсказка: See the 'Note about fast-forwards' in 'git push --help' for details.
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$ git push -f origin main
+Перечисление объектов: 2968, готово.
+Подсчет объектов: 100% (2968/2968), готово.
+При сжатии изменений используется до 2 потоков
+Сжатие объектов: 100% (2257/2257), готово.
+Запись объектов: 100% (2968/2968), 13.47 МиБ | 3.88 МиБ/с, готово.
+Всего 2968 (изменений 537), повторно использовано 2968 (изменений 537), повторно использовано пакетов 0
+remote: Resolving deltas: 100% (537/537), done.
+To github.com:ZhenyaBukov/lab07.git
+ + b525839...96b99df main -> main (forced update)
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab07$  
 
