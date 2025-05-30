@@ -1,4 +1,6 @@
 zhenya@zhenya-VirtualBox:~$ export GITHUB_USERNAME=ZhenyaBukov
+zhenya@zhenya-VirtualBox:~$ export GITHUB_EMAIL=zhenya.bukov.06@mail.ru
+zhenya@zhenya-VirtualBox:~$ alias edit=nano
 zhenya@zhenya-VirtualBox:~$ alias gsed=sed
 
 
@@ -10,297 +12,277 @@ zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ source scripts/activate
 
 
 
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ git clone git@github.com:ZhenyaBukov/lab04.git projects/lab06
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ git clone git@github.com:ZhenyaBukov/lab05.git projects/lab06
 Клонирование в «projects/lab06»...
-remote: Enumerating objects: 2949, done.
-remote: Counting objects: 100% (2949/2949), done.
-remote: Compressing objects: 100% (2249/2249), done.
-remote: Total 2949 (delta 528), reused 2945 (delta 527), pack-reused 0 (from 0)
-Получение объектов: 100% (2949/2949), 13.46 МиБ | 2.72 МиБ/с, готово.
-Определение изменений: 100% (528/528), готово.
+remote: Enumerating objects: 2959, done.
+remote: Counting objects: 100% (2959/2959), done.
+remote: Compressing objects: 100% (2256/2256), done.
+remote: Total 2959 (delta 532), reused 2951 (delta 529), pack-reused 0 (from 0)
+Получение объектов: 100% (2959/2959), 13.47 МиБ | 2.04 МиБ/с, готово.
+Определение изменений: 100% (532/532), готово.
 zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ cd projects/lab06
 zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git remote remove origin
+
+
+
 zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git remote add origin git@github.com:ZhenyaBukov/lab06.git
-
-
-
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ mkdir third-party
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git submodule add https://github.com/google/googletest third-party/gtest
-Клонирование в «/home/zhenya/ZhenyaBukov/workspace/projects/lab06/third-party/gtest»...
-remote: Enumerating objects: 28100, done.
-remote: Counting objects: 100% (318/318), done.
-remote: Compressing objects: 100% (200/200), done.
-remote: Total 28100 (delta 203), reused 125 (delta 113), pack-reused 27782 (from 4)
-Получение объектов: 100% (28100/28100), 13.58 МиБ | 1.77 МиБ/с, готово.
-Определение изменений: 100% (20811/20811), готово.
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cd third-party/gtest && git checkout release-1.8.1 && cd ../..
-Примечание: переключение на «release-1.8.1».
-
-Вы сейчас в состоянии «отсоединённого указателя HEAD». Можете осмотреться,
-внести экспериментальные изменения и зафиксировать их, также можете
-отменить любые коммиты, созданные в этом состоянии, не затрагивая другие
-ветки, переключившись обратно на любую ветку.
-
-Если хотите создать новую ветку для сохранения созданных коммитов, можете
-сделать это (сейчас или позже), используя команду switch с параметром -c.
-Например:
-
-  git switch -c <новая-ветка>
-
-Или отмените эту операцию с помощью:
-
-  git switch -
-
-Отключите этот совет, установив переменную конфигурации
-advice.detachedHead в значение false
-
-HEAD сейчас на 2fe3bd99 Merge pull request #1433 from dsacre/fix-clang-warnings
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git add third-party/gtest
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git commit -m"added gtest framework"
-[main 28a5b67] added gtest framework
- 2 files changed, 4 insertions(+)
- create mode 100644 .gitmodules
- create mode 160000 third-party/gtest
-
-
- 
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ gsed -i '/option(BUILD_EXAMPLES "Build examples" OFF)/a\
-> option(BUILD_TESTS "Build tests" OFF)
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ gsed -i '/project(print)/a\
+> set(PRINT_VERSION_STRING "v\${PRINT_VERSION}")
+> ' CMakeLists.txt
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ gsed -i '/project(print)/a\
+> set(PRINT_VERSION\
+  \${PRINT_VERSION_MAJOR}.\${PRINT_VERSION_MINOR}.\${PRINT_VERSION_PATCH}.\${PRINT_VERSION_TWEAK})
 ' CMakeLists.txt
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ gsed -i '/project(print)/a\
+> set(PRINT_VERSION_TWEAK 0)
+' CMakeLists.txt
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ gsed -i '/project(print)/a\
+> set(PRINT_VERSION_PATCH 0)
+' CMakeLists.txt
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ gsed -i '/project(print)/a\
+> set(PRINT_VERSION_MINOR 1)
+' CMakeLists.txt
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ gsed -i '/project(print)/a\
+> set(PRINT_VERSION_MAJOR 0)
+' CMakeLists.txt
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git diff
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index aa7a323..71b64e3 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -7,6 +7,13 @@ option(BUILD_EXAMPLES "Build examples" OFF)
+ option(BUILD_TESTS "Build tests" OFF)
+ 
+ project(print)
++set(PRINT_VERSION_MAJOR 0)
++set(PRINT_VERSION_MINOR 1)
++set(PRINT_VERSION_PATCH 0)
++set(PRINT_VERSION_TWEAK 0)
++set(PRINT_VERSION
++  ${PRINT_VERSION_MAJOR}.${PRINT_VERSION_MINOR}.${PRINT_VERSION_PATCH}.${PRINT_VERSION_TWEAK})
++set(PRINT_VERSION_STRING "v${PRINT_VERSION}")
+ 
+ add_library(print STATIC ${CMAKE_CURRENT_SOURCE_DIR}/sources/print.cpp)
+ 
+
+
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ touch DESCRIPTION && edit DESCRIPTION
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ touch ChangeLog.md
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ export DATE="`LANG=en_US date +'%a %b %d %Y'`"
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cat > ChangeLog.md <<EOF
+> * ${DATE} ${GITHUB_USERNAME} <${GITHUB_EMAIL}> 0.1.0.0
+- Initial RPM release
+EOF
+
+
+
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cat > CPackConfig.cmake <<EOF
+> include(InstallRequiredSystemLibraries)
+EOF
+
+
+
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cat >> CPackConfig.cmake <<EOF
+> set(CPACK_PACKAGE_CONTACT ${GITHUB_EMAIL})
+set(CPACK_PACKAGE_VERSION_MAJOR \${PRINT_VERSION_MAJOR})
+set(CPACK_PACKAGE_VERSION_MINOR \${PRINT_VERSION_MINOR})
+set(CPACK_PACKAGE_VERSION_PATCH \${PRINT_VERSION_PATCH})
+set(CPACK_PACKAGE_VERSION_TWEAK \${PRINT_VERSION_TWEAK})
+set(CPACK_PACKAGE_VERSION \${PRINT_VERSION})
+set(CPACK_PACKAGE_DESCRIPTION_FILE \${CMAKE_CURRENT_SOURCE_DIR}/DESCRIPTION)
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "static C++ library for printing")
+EOF
+
+
+
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cat >> CPackConfig.cmake <<EOF
+> 
+> set(CPACK_RESOURCE_FILE_LICENSE \${CMAKE_CURRENT_SOURCE_DIR}/LICENSE)
+set(CPACK_RESOURCE_FILE_README \${CMAKE_CURRENT_SOURCE_DIR}/README.md) 
+EOF
+
+
+
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cat >> CPackConfig.cmake <<EOF
+> 
+> set(CPACK_RPM_PACKAGE_NAME "print-devel")
+set(CPACK_RPM_PACKAGE_LICENSE "MIT")
+set(CPACK_RPM_PACKAGE_GROUP "print")
+set(CPACK_RPM_CHANGELOG_FILE \${CMAKE_CURRENT_SOURCE_DIR}/ChangeLog.md)
+set(CPACK_RPM_PACKAGE_RELEASE 1)
+EOF
+
+
+
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cat >> CPackConfig.cmake <<EOF
+> 
+> set(CPACK_DEBIAN_PACKAGE_NAME "libprint-dev")
+set(CPACK_DEBIAN_PACKAGE_PREDEPENDS "cmake >= 3.0")
+set(CPACK_DEBIAN_PACKAGE_RELEASE 1)
+EOF
+
+
+
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cat >> CPackConfig.cmake <<EOF
+> 
+> include(CPack)
+EOF
+
+
+
 zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cat >> CMakeLists.txt <<EOF
 > 
-> if(BUILD_TESTS)
-  enable_testing()
-  add_subdirectory(third-party/gtest)
-  file(GLOB \${PROJECT_NAME}_TEST_SOURCES tests/*.cpp)
-  add_executable(check \${\${PROJECT_NAME}_TEST_SOURCES})
-  target_link_libraries(check \${PROJECT_NAME} gtest_main)
-  add_test(NAME check COMMAND check)
-endif()
+> include(CPackConfig.cmake)
 EOF
 
 
 
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ mkdir tests
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cat > tests/test1.cpp <<EOF
-> #include <print.hpp>
-
-#include <gtest/gtest.h>
-
-TEST(Print, InFileStream)
-{
-  std::string filepath = "file.txt";
-  std::string text = "hello";
-  std::ofstream out{filepath};
-
-  print(text, out);
-  out.close();
-
-  std::string result;
-  std::ifstream in{filepath};
-  in >> result;
-
-  EXPECT_EQ(result, text);
-}
-EOF
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ gsed -i 's/lab05/lab06/g' README.md
 
 
 
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cmake -H. -B_build -DBUILD_TESTS=ON
-CMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
-  Compatibility with CMake < 3.5 will be removed from a future version of
-  CMake.
-
-  Update the VERSION argument <min> value or use a ...<max> suffix to tell
-  CMake that the project does not need compatibility with older versions.
-
-
--- The C compiler identification is GNU 13.3.0
--- The CXX compiler identification is GNU 13.3.0
--- Detecting C compiler ABI info
--- Detecting C compiler ABI info - done
--- Check for working C compiler: /usr/bin/cc - skipped
--- Detecting C compile features
--- Detecting C compile features - done
--- Detecting CXX compiler ABI info
--- Detecting CXX compiler ABI info - done
--- Check for working CXX compiler: /usr/bin/c++ - skipped
--- Detecting CXX compile features
--- Detecting CXX compile features - done
-CMake Deprecation Warning at third-party/gtest/CMakeLists.txt:1 (cmake_minimum_required):
-  Compatibility with CMake < 3.5 will be removed from a future version of
-  CMake.
-
-  Update the VERSION argument <min> value or use a ...<max> suffix to tell
-  CMake that the project does not need compatibility with older versions.
-
-
-CMake Deprecation Warning at third-party/gtest/googlemock/CMakeLists.txt:42 (cmake_minimum_required):
-  Compatibility with CMake < 3.5 will be removed from a future version of
-  CMake.
-
-  Update the VERSION argument <min> value or use a ...<max> suffix to tell
-  CMake that the project does not need compatibility with older versions.
-
-
-CMake Deprecation Warning at third-party/gtest/googletest/CMakeLists.txt:49 (cmake_minimum_required):
-  Compatibility with CMake < 3.5 will be removed from a future version of
-  CMake.
-
-  Update the VERSION argument <min> value or use a ...<max> suffix to tell
-  CMake that the project does not need compatibility with older versions.
-
-
-CMake Warning (dev) at third-party/gtest/googletest/cmake/internal_utils.cmake:239 (find_package):
-  Policy CMP0148 is not set: The FindPythonInterp and FindPythonLibs modules
-  are removed.  Run "cmake --help-policy CMP0148" for policy details.  Use
-  the cmake_policy command to set the policy and suppress this warning.
-
-Call Stack (most recent call first):
-  third-party/gtest/googletest/CMakeLists.txt:84 (include)
-This warning is for project developers.  Use -Wno-dev to suppress it.
-
--- Found PythonInterp: /usr/bin/python3 (found version "3.12.3") 
--- Performing Test CMAKE_HAVE_LIBC_PTHREAD
--- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
--- Found Threads: TRUE  
--- Configuring done (0.6s)
--- Generating done (0.0s)
--- Build files have been written to: /home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cmake --build _build
-[  6%] Building CXX object CMakeFiles/print.dir/sources/print.cpp.o
-In file included from /home/zhenya/ZhenyaBukov/workspace/projects/lab06/sources/print.cpp:2:
-/home/zhenya/ZhenyaBukov/workspace/projects/lab06/include/print.hpp:6:6: error: default argument given for parameter 2 of ‘void print(const std::string&, std::ostream&)’ [-fpermissive]
-    6 | void print(const std::string& text, std::ostream& out = std::cout);
-      |      ^~~~~
-In file included from /home/zhenya/ZhenyaBukov/workspace/projects/lab06/sources/print.cpp:1:
-/home/zhenya/ZhenyaBukov/workspace/projects/lab06/include/print.hpp:6:6: note: previous specification in ‘void print(const std::string&, std::ostream&)’ here
-    6 | void print(const std::string& text, std::ostream& out = std::cout);
-      |      ^~~~~
-gmake[2]: *** [CMakeFiles/print.dir/build.make:76: CMakeFiles/print.dir/sources/print.cpp.o] Ошибка 1
-gmake[1]: *** [CMakeFiles/Makefile2:142: CMakeFiles/print.dir/all] Ошибка 2
-gmake: *** [Makefile:146: all] Ошибка 2
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cmake --build _build --target test
-Running tests...
-Test project /home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build
-    Start 1: check
-Could not find executable /home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/check
-Looked in the following places:
-/home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/check
-/home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/check
-/home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/Release/check
-/home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/Release/check
-/home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/Debug/check
-/home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/Debug/check
-/home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/MinSizeRel/check
-/home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/MinSizeRel/check
-/home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/RelWithDebInfo/check
-/home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/RelWithDebInfo/check
-/home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/Deployment/check
-/home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/Deployment/check
-/home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/Development/check
-/home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/Development/check
-home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/check
-home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/check
-home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/Release/check
-home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/Release/check
-home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/Debug/check
-home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/Debug/check
-home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/MinSizeRel/check
-home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/MinSizeRel/check
-home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/RelWithDebInfo/check
-home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/RelWithDebInfo/check
-home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/Deployment/check
-home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/Deployment/check
-home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/Development/check
-home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/Development/check
-Unable to find executable: /home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/check
-1/1 Test #1: check ............................***Not Run   0.00 sec
-
-0% tests passed, 1 tests failed out of 1
-
-Total Test time (real) =   0.00 sec
-
-The following tests FAILED:
-	  1 - check (Not Run)
-Errors while running CTest
-Output from these tests are in: /home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/Testing/Temporary/LastTest.log
-Use "--rerun-failed --output-on-failure" to re-run the failed cases verbosely.
-gmake: *** [Makefile:71: test] Ошибка 8
-
-
-
-
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ _build/check
-bash: _build/check: Нет такого файла или каталога
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cmake --build _build --target test -- ARGS=--verbose
-Running tests...
-UpdateCTestConfiguration  from :/home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/DartConfiguration.tcl
-UpdateCTestConfiguration  from :/home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/DartConfiguration.tcl
-Test project /home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build
-Constructing a list of tests
-Done constructing a list of tests
-Updating test list for fixtures
-Added 0 tests to meet fixture requirements
-Checking test dependency graph...
-Checking test dependency graph end
-test 1
-    Start 1: check
-Could not find executable /home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/check
-Looked in the following places:
-/home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/check
-/home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/check
-/home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/Release/check
-/home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/Release/check
-/home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/Debug/check
-/home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/Debug/check
-/home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/MinSizeRel/check
-/home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/MinSizeRel/check
-/home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/RelWithDebInfo/check
-/home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/RelWithDebInfo/check
-/home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/Deployment/check
-/home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/Deployment/check
-/home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/Development/check
-/home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/Development/check
-home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/check
-home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/check
-home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/Release/check
-home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/Release/check
-home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/Debug/check
-home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/Debug/check
-home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/MinSizeRel/check
-home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/MinSizeRel/check
-home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/RelWithDebInfo/check
-home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/RelWithDebInfo/check
-home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/Deployment/check
-home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/Deployment/check
-home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/Development/check
-home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/Development/check
-
-1: Test command: 
-1: Working Directory: /home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build
-Unable to find executable: /home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/check
-1/1 Test #1: check ............................***Not Run   0.00 sec
-
-0% tests passed, 1 tests failed out of 1
-
-Total Test time (real) =   0.00 sec
-
-The following tests FAILED:
-	  1 - check (Not Run)
-Errors while running CTest
-Output from these tests are in: /home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/Testing/Temporary/LastTest.log
-Use "--rerun-failed --output-on-failure" to re-run the failed cases verbosely.
-gmake: *** [Makefile:71: test] Ошибка 8
-
-
-
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ gsed -i 's/lab04/lab06/g' README.md
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ gsed -i 's/\(DCMAKE_INSTALL_PREFIX=_install\)/\1 -DBUILD_TESTS=ON/' .travis.yml
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ gsed -i '/cmake --build _build --target install/a\
-> - cmake --build _build --target test -- ARGS=--verbose
-' .travis.yml
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ travis lint
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git add .
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git commit -m"added cpack config"
+[main f5ca419] added cpack config
+ 5 files changed, 194 insertions(+), 159 deletions(-)
+ create mode 100644 CPackConfig.cmake
+ create mode 100644 ChangeLog.md
+ create mode 100644 DESCRIPTION
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git tag v0.1.0.0
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git push origin main --tags
+Перечисление объектов: 2965, готово.
+Подсчет объектов: 100% (2965/2965), готово.
+При сжатии изменений используется до 2 потоков
+Сжатие объектов: 100% (2259/2259), готово.
+Запись объектов: 100% (2965/2965), 13.47 МиБ | 3.47 МиБ/с, готово.
+Всего 2965 (изменений 535), повторно использовано 2956 (изменений 532), повторно использовано пакетов 0
+remote: Resolving deltas: 100% (535/535), done.
+remote: error: GH013: Repository rule violations found for refs/tags/v0.1.0.0.
+remote: 
+remote: - GITHUB PUSH PROTECTION
+remote:   —————————————————————————————————————————
+remote:     Resolve the following violations before pushing again
+remote: 
+remote:     - Push cannot contain secrets
+remote: 
+remote:     
+remote:      (?) Learn how to resolve a blocked push
+remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push
+remote:     
+remote:     
+remote:       —— GitHub Personal Access Token ——————————————————————
+remote:        locations:
+remote:          - commit: d9761b6860846de6c653a920d82595366474a101
+remote:            path: README.md:2
+remote:     
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
+remote:        https://github.com/ZhenyaBukov/lab06/security/secret-scanning/unblock-secret/2xomUIjouEI0gu2J0Hs6V24I9gt
+remote:     
+remote:     
+remote:       —— GitHub Personal Access Token ——————————————————————
+remote:        locations:
+remote:          - commit: c71fea93dbceb60601f9d9cc6175713b8e8fa5ba
+remote:            path: README.md:3
+remote:     
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
+remote:        https://github.com/ZhenyaBukov/lab06/security/secret-scanning/unblock-secret/2xomUJlbuUPzEKRl7V1UPfXhD95
+remote:     
+remote: 
+remote: 
+To github.com:ZhenyaBukov/lab06.git
+ ! [rejected]        main -> main (fetch first)
+ ! [remote rejected] v0.1.0.0 -> v0.1.0.0 (push declined due to repository rule violations)
+error: не удалось отправить некоторые ссылки в «github.com:ZhenyaBukov/lab06.git»
+подсказка: Updates were rejected because the remote contains work that you do not
+подсказка: have locally. This is usually caused by another repository pushing to
+подсказка: the same ref. If you want to integrate the remote changes, use
+подсказка: 'git pull' before pushing again.
+подсказка: See the 'Note about fast-forwards' in 'git push --help' for details.
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git push origin main --tags
+Перечисление объектов: 2965, готово.
+Подсчет объектов: 100% (2965/2965), готово.
+При сжатии изменений используется до 2 потоков
+Сжатие объектов: 100% (2259/2259), готово.
+Запись объектов: 100% (2965/2965), 13.47 МиБ | 1.64 МиБ/с, готово.
+Всего 2965 (изменений 535), повторно использовано 2956 (изменений 532), повторно использовано пакетов 0
+remote: Resolving deltas: 100% (535/535), done.
+remote: error: GH013: Repository rule violations found for refs/tags/v0.1.0.0.
+remote: 
+remote: - GITHUB PUSH PROTECTION
+remote:   —————————————————————————————————————————
+remote:     Resolve the following violations before pushing again
+remote: 
+remote:     - Push cannot contain secrets
+remote: 
+remote:     
+remote:      (?) Learn how to resolve a blocked push
+remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push
+remote:     
+remote:     
+remote:       —— GitHub Personal Access Token ——————————————————————
+remote:        locations:
+remote:          - commit: d9761b6860846de6c653a920d82595366474a101
+remote:            path: README.md:2
+remote:     
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
+remote:        https://github.com/ZhenyaBukov/lab06/security/secret-scanning/unblock-secret/2xomUIjouEI0gu2J0Hs6V24I9gt
+remote:     
+remote: 
+remote: 
+To github.com:ZhenyaBukov/lab06.git
+ ! [rejected]        main -> main (fetch first)
+ ! [remote rejected] v0.1.0.0 -> v0.1.0.0 (push declined due to repository rule violations)
+error: не удалось отправить некоторые ссылки в «github.com:ZhenyaBukov/lab06.git»
+подсказка: Updates were rejected because the remote contains work that you do not
+подсказка: have locally. This is usually caused by another repository pushing to
+подсказка: the same ref. If you want to integrate the remote changes, use
+подсказка: 'git pull' before pushing again.
+подсказка: See the 'Note about fast-forwards' in 'git push --help' for details.
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git push -f origin main
+Перечисление объектов: 2965, готово.
+Подсчет объектов: 100% (2965/2965), готово.
+При сжатии изменений используется до 2 потоков
+Сжатие объектов: 100% (2259/2259), готово.
+Запись объектов: 100% (2965/2965), 13.47 МиБ | 1.99 МиБ/с, готово.
+Всего 2965 (изменений 535), повторно использовано 2956 (изменений 532), повторно использовано пакетов 0
+remote: Resolving deltas: 100% (535/535), done.
+remote: error: GH013: Repository rule violations found for refs/heads/main.
+remote: 
+remote: - GITHUB PUSH PROTECTION
+remote:   —————————————————————————————————————————
+remote:     Resolve the following violations before pushing again
+remote: 
+remote:     - Push cannot contain secrets
+remote: 
+remote:     
+remote:      (?) Learn how to resolve a blocked push
+remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push
+remote:     
+remote:     
+remote:       —— GitHub Personal Access Token ——————————————————————
+remote:        locations:
+remote:          - commit: d9761b6860846de6c653a920d82595366474a101
+remote:            path: README.md:2
+remote:     
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
+remote:        https://github.com/ZhenyaBukov/lab06/security/secret-scanning/unblock-secret/2xomUIjouEI0gu2J0Hs6V24I9gt
+remote:     
+remote: 
+remote: 
+To github.com:ZhenyaBukov/lab06.git
+ ! [remote rejected] main -> main (push declined due to repository rule violations)
+error: не удалось отправить некоторые ссылки в «github.com:ZhenyaBukov/lab06.git»
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git push -f origin main
+Перечисление объектов: 2965, готово.
+Подсчет объектов: 100% (2965/2965), готово.
+При сжатии изменений используется до 2 потоков
+Сжатие объектов: 100% (2259/2259), готово.
+Запись объектов: 100% (2965/2965), 13.47 МиБ | 2.62 МиБ/с, готово.
+Всего 2965 (изменений 535), повторно использовано 2956 (изменений 532), повторно использовано пакетов 0
+remote: Resolving deltas: 100% (535/535), done.
+To github.com:ZhenyaBukov/lab06.git
+ + 11e22b9...f5ca419 main -> main (forced update)
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ travis login --auto
 
   ________                                 __
  /        |                               /  |
@@ -326,7 +308,7 @@ zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ travis lint
 
     There is absolutely no warranty on any results obtained from TRAVIS.
 
- #  Running on zhenya-VirtualBox at Sat May 24 22:39:07 2025 (PID 38246)
+ #  Running on zhenya-VirtualBox at Fri May 30 16:50:05 2025 (PID 50266)
  #  Running in /home/zhenya/ZhenyaBukov/workspace/projects/lab06
  #  Version: Jul 29 2022, built at Jan 14 2023, 12:32:45, compiler "12.2.0", GCC 12.2.0
  #  Target platform: Linux, __cplusplus=201703L, Compile flags: NEW_CHARGEVAR DEBUG_ARRAYS 
@@ -339,7 +321,7 @@ zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ travis lint
 
     Loading configuration from /home/zhenya/.travis.conf ...
 
-Unknown parameter: "lint".
+Unknown parameter: "login".
 
     List of supported command line options:
 
@@ -395,376 +377,79 @@ Unknown parameter: "lint".
 
 *** The End ***
 
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git add .travis.yml
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git add tests
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git add -p
-diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 7bb5578..ae34362 100644
---- a/CMakeLists.txt
-+++ b/CMakeLists.txt
-@@ -10,3 +10,12 @@ add_executable(example2 ${CMAKE_CURRENT_SOURCE_DIR}/examples/example2.cpp)
- 
- target_link_libraries(example1 print)
- target_link_libraries(example2 print)
-+
-+if(BUILD_TESTS)
-+  enable_testing()
-+  add_subdirectory(third-party/gtest)
-+  file(GLOB ${PROJECT_NAME}_TEST_SOURCES tests/*.cpp)
-+  add_executable(check ${${PROJECT_NAME}_TEST_SOURCES})
-+  target_link_libraries(check ${PROJECT_NAME} gtest_main)
-+  add_test(NAME check COMMAND check)
-+endif()
-(1/1) Индексировать этот блок [y,n,q,a,d,e,?]? y
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cmake -H. -B_build
+CMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.5 will be removed from a future version of
+  CMake.
 
-diff --git a/README.md b/README.md
-index a715d4f..2c3375c 100644
---- a/README.md
-+++ b/README.md
-@@ -82,27 +82,27 @@ ERROR:  While executing gem ... (Gem::FilePermissionError)
- 
- 
-     
--zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ git clone git@github.com:ZhenyaBukov/lab03.git projects/lab04
--Клонирование в «projects/lab04»...
-+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ git clone git@github.com:ZhenyaBukov/lab03.git projects/lab06
-+Клонирование в «projects/lab06»...
- remote: Enumerating objects: 2942, done.
- remote: Counting objects: 100% (2942/2942), done.
- remote: Compressing objects: 100% (2245/2245), done.
- remote: Total 2942 (delta 525), reused 2938 (delta 524), pack-reused 0 (from 0)
- Получение объектов: 100% (2942/2942), 13.45 МиБ | 2.16 МиБ/с, готово.
- Определение изменений: 100% (525/525), готово.
--zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ cd projects/lab04
--zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ git remote remove origin
--zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ git remote add origin git@github.com:ZhenyaBukov/lab04.git
-+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ cd projects/lab06
-+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git remote remove origin
-+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git remote add origin git@github.com:ZhenyaBukov/lab06.git
- 
- 
- 
--zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ cat > .travis.yml <<EOF
-+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cat > .travis.yml <<EOF
- > language: cpp
- EOF
- 
- 
- 
--zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ cat >> .travis.yml <<EOF
-+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cat >> .travis.yml <<EOF
- >
- > script:
- - cmake -H. -B_build -DCMAKE_INSTALL_PREFIX=_install
-(1/10) Индексировать этот блок [y,n,q,a,d,j,J,g,/,s,e,?]? 
-@@ -82,27 +82,27 @@ ERROR:  While executing gem ... (Gem::FilePermissionError)
- 
- 
-     
--zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ git clone git@github.com:ZhenyaBukov/lab03.git projects/lab04
--Клонирование в «projects/lab04»...
-+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ git clone git@github.com:ZhenyaBukov/lab03.git projects/lab06
-+Клонирование в «projects/lab06»...
- remote: Enumerating objects: 2942, done.
- remote: Counting objects: 100% (2942/2942), done.
- remote: Compressing objects: 100% (2245/2245), done.
- remote: Total 2942 (delta 525), reused 2938 (delta 524), pack-reused 0 (from 0)
- Получение объектов: 100% (2942/2942), 13.45 МиБ | 2.16 МиБ/с, готово.
- Определение изменений: 100% (525/525), готово.
--zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ cd projects/lab04
--zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ git remote remove origin
--zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ git remote add origin git@github.com:ZhenyaBukov/lab04.git
-+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ cd projects/lab06
-+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git remote remove origin
-+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git remote add origin git@github.com:ZhenyaBukov/lab06.git
- 
- 
- 
--zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ cat > .travis.yml <<EOF
-+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cat > .travis.yml <<EOF
- > language: cpp
- EOF
- 
- 
- 
--zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ cat >> .travis.yml <<EOF
-+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cat >> .travis.yml <<EOF
- >
- > script:
- - cmake -H. -B_build -DCMAKE_INSTALL_PREFIX=_install
-(1/10) Индексировать этот блок [y,n,q,a,d,j,J,g,/,s,e,?]? 
-@@ -82,27 +82,27 @@ ERROR:  While executing gem ... (Gem::FilePermissionError)
- 
- 
-     
--zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ git clone git@github.com:ZhenyaBukov/lab03.git projects/lab04
--Клонирование в «projects/lab04»...
-+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ git clone git@github.com:ZhenyaBukov/lab03.git projects/lab06
-+Клонирование в «projects/lab06»...
- remote: Enumerating objects: 2942, done.
- remote: Counting objects: 100% (2942/2942), done.
- remote: Compressing objects: 100% (2245/2245), done.
- remote: Total 2942 (delta 525), reused 2938 (delta 524), pack-reused 0 (from 0)
- Получение объектов: 100% (2942/2942), 13.45 МиБ | 2.16 МиБ/с, готово.
- Определение изменений: 100% (525/525), готово.
--zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ cd projects/lab04
--zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ git remote remove origin
--zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ git remote add origin git@github.com:ZhenyaBukov/lab04.git
-+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace$ cd projects/lab06
-+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git remote remove origin
-+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git remote add origin git@github.com:ZhenyaBukov/lab06.git
- 
- 
- 
--zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ cat > .travis.yml <<EOF
-+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cat > .travis.yml <<EOF
- > language: cpp
- EOF
- 
- 
- 
--zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ cat >> .travis.yml <<EOF
-+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cat >> .travis.yml <<EOF
- >
- > script:
- - cmake -H. -B_build -DCMAKE_INSTALL_PREFIX=_install
-(1/10) Индексировать этот блок [y,n,q,a,d,j,J,g,/,s,e,?]? y
-@@ -113,7 +113,7 @@ EOF
- 
- 
- 
--zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ cat >> .travis.yml <<EOF
-+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cat >> .travis.yml <<EOF
- >
- > addons:
-   apt:
-(2/10) Индексировать этот блок [y,n,q,a,d,K,j,J,g,/,e,?]? y
-@@ -127,13 +127,13 @@ EOF
- 
- 
- 
--zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ sudo snap install travis
-+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ sudo snap install travis
- travis 1.8.9 от Travis CI✓ installed
--zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ travis login --github-token ${GITHUB_TOKEN}
-+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ travis login --github-token ${GITHUB_TOKEN}
- Outdated CLI version, run `gem install travis`.
- resource not found ({}
- )
--zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ sudo apt  install travis
-+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ sudo apt  install travis
- Чтение списков пакетов… Готово
- Построение дерева зависимостей… Готово
- Чтение информации о состоянии… Готово         
-(3/10) Индексировать этот блок [y,n,q,a,d,K,j,J,g,/,s,e,?]? y
-@@ -153,14 +153,14 @@ zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ sudo apt  inst
- Распаковывается travis (220729-1) …
- Настраивается пакет travis (220729-1) …
- Обрабатываются триггеры для man-db (2.12.0-4build2) …
--zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ travis login --github-token ${GITHUB_TOKEN}
-+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ travis login --github-token ${GITHUB_TOKEN}
- Outdated CLI version, run `gem install travis`.
- resource not found ({}
- )
--zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ travis lint
-+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ travis lint
- Outdated CLI version, run `gem install travis`.
- 405: "<!doctype html>\n<html lang=en>\n<title>405 Method Not Allowed</title>\n<h1>Method Not Allowed</h1>\n<p>The method is not allowed for the requested URL.</p>\n"
--zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ sudo apt-get install ruby-full
-+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ sudo apt-get install ruby-full
- Чтение списков пакетов… Готово
- Построение дерева зависимостей… Готово
- Чтение информации о состоянии… Готово         
-(4/10) Индексировать этот блок [y,n,q,a,d,K,j,J,g,/,s,e,?]? y
-@@ -213,7 +213,7 @@ zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ sudo apt-get in
- Настраивается пакет ruby-dev:amd64 (1:3.2~ubuntu1) …
- Настраивается пакет ruby-full (1:3.2~ubuntu1) …
- Обрабатываются триггеры для libc-bin (2.39-0ubuntu8.4) …
--zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ travis login --github-token ${GITHUB_TOKEN}
-+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ travis login --github-token ${GITHUB_TOKEN}
-  
-   ________                                 __
-  /        |                               /  |
-(5/10) Индексировать этот блок [y,n,q,a,d,K,j,J,g,/,e,?]? y
-@@ -240,7 +240,7 @@ zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ travis login --
-     There is absolutely no warranty on any results obtained from TRAVIS.
-  
-  #  Running on zhenya-VirtualBox at Sun May 18 23:42:04 2025 (PID 29522)
-- #  Running in /home/zhenya/ZhenyaBukov/workspace/projects/lab04
-+ #  Running in /home/zhenya/ZhenyaBukov/workspace/projects/lab06
-  #  Version: Jul 29 2022, built at Jan 14 2023, 12:32:45, compiler "12.2.0", GCC 12.2.0
-  #  Target platform: Linux, __cplusplus=201703L, Compile flags: NEW_CHARGEVAR DEBUG_ARRAYS
-  #  Compiled with OpenMP, but USE_OMP not switched on in "config.h"!
-(6/10) Индексировать этот блок [y,n,q,a,d,K,j,J,g,/,e,?]? y
-@@ -309,7 +309,7 @@ Unknown parameter: "login".
-  
- *** The End ***
-  
--zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ travis lint
-+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ travis lint
- [Renaming existing File travis.log to #2#travis.log ...OK.]
-  
-   ________                                 __
-(7/10) Индексировать этот блок [y,n,q,a,d,K,j,J,g,/,e,?]? y
-@@ -337,7 +337,7 @@ zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ travis lint
-     There is absolutely no warranty on any results obtained from TRAVIS.
-  
-  #  Running on zhenya-VirtualBox at Sun May 18 23:42:43 2025 (PID 29534)
-- #  Running in /home/zhenya/ZhenyaBukov/workspace/projects/lab04
-+ #  Running in /home/zhenya/ZhenyaBukov/workspace/projects/lab06
-  #  Version: Jul 29 2022, built at Jan 14 2023, 12:32:45, compiler "12.2.0", GCC 12.2.0
-  #  Target platform: Linux, __cplusplus=201703L, Compile flags: NEW_CHARGEVAR DEBUG_ARRAYS
-  #  Compiled with OpenMP, but USE_OMP not switched on in "config.h"!
-(8/10) Индексировать этот блок [y,n,q,a,d,K,j,J,g,/,e,?]? y
-@@ -406,20 +406,20 @@ Unknown parameter: "lint".
-  
- *** The End ***
-  
--zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ ex -sc '1i|<фрагмент_вставки_значка>' -cx README.md
-+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ ex -sc '1i|<фрагмент_вставки_значка>' -cx README.md
- 
- 
- 
--zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ git add .travis.yml
--zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ git add README.md
--zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ git commit -m"added CI"
-+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git add .travis.yml
-+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git add README.md
-+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git commit -m"added CI"
- [main f8800d7] added CI
-  2 files changed, 15 insertions(+)
-  create mode 100644 .travis.yml
- 
- 
-  
--zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ git push -f origin main
-+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git push -f origin main
- Перечисление объектов: 2946, готово.
- Подсчет объектов: 100% (2946/2946), готово.
- При сжатии изменений используется до 2 потоков
-(9/10) Индексировать этот блок [y,n,q,a,d,K,j,J,g,/,s,e,?]? y
-@@ -427,12 +427,12 @@ zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ git push -f ori
- Запись объектов: 100% (2946/2946), 13.45 МиБ | 2.71 МиБ/с, готово.
- Всего 2946 (изменений 527), повторно использовано 2940 (изменений 525), повторно использовано пакетов 0
- remote: Resolving deltas: 100% (527/527), done.
--To github.com:ZhenyaBukov/lab04.git
-+To github.com:ZhenyaBukov/lab06.git
-  + 700a4de...f8800d7 main -> main (forced update)
--zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ git push origin master
-+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git push origin master
- error: src refspec master ничему не соответствует
--error: не удалось отправить некоторые ссылки в «github.com:ZhenyaBukov/lab04.git»
--zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$ git push origin main
-+error: не удалось отправить некоторые ссылки в «github.com:ZhenyaBukov/lab06.git»
-+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git push origin main
- Everything up-to-date
--zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab04$
-+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$
-  
-(10/10) Индексировать этот блок [y,n,q,a,d,K,g,/,s,e,?]? y
+  Update the VERSION argument <min> value or use a ...<max> suffix to tell
+  CMake that the project does not need compatibility with older versions.
 
 
+-- The C compiler identification is GNU 13.3.0
+-- The CXX compiler identification is GNU 13.3.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (0.5s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cmake --build _build
+[ 50%] Building CXX object CMakeFiles/print.dir/sources/print.cpp.o
+In file included from /home/zhenya/ZhenyaBukov/workspace/projects/lab06/sources/print.cpp:2:
+/home/zhenya/ZhenyaBukov/workspace/projects/lab06/include/print.hpp:6:6: error: default argument given for parameter 2 of ‘void print(const std::string&, std::ostream&)’ [-fpermissive]
+    6 | void print(const std::string& text, std::ostream& out = std::cout);
+      |      ^~~~~
+In file included from /home/zhenya/ZhenyaBukov/workspace/projects/lab06/sources/print.cpp:1:
+/home/zhenya/ZhenyaBukov/workspace/projects/lab06/include/print.hpp:6:6: note: previous specification in ‘void print(const std::string&, std::ostream&)’ here
+    6 | void print(const std::string& text, std::ostream& out = std::cout);
+      |      ^~~~~
+gmake[2]: *** [CMakeFiles/print.dir/build.make:76: CMakeFiles/print.dir/sources/print.cpp.o] Ошибка 1
+gmake[1]: *** [CMakeFiles/Makefile2:83: CMakeFiles/print.dir/all] Ошибка 2
+gmake: *** [Makefile:156: all] Ошибка 2
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cd _build
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06/_build$ cpack -G "TGZ"
+CPack: Create package using TGZ
+CPack: Install projects
+CPack: - Run preinstall target for: print
+CPack Error: Problem running install command: /usr/bin/cmake --build . --target "preinstall"
+Please check /home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build/_CPack_Packages/Linux/TGZ/PreinstallOutput.log for errors
+CPack Error: Error when generating package: print
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06/_build$ cd ..
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cmake -H. -B_build -DCPACK_GENERATOR="TGZ"
+CMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.5 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value or use a ...<max> suffix to tell
+  CMake that the project does not need compatibility with older versions.
 
 
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/zhenya/ZhenyaBukov/workspace/projects/lab06/_build
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ cmake --build _build --target package
+[ 50%] Building CXX object CMakeFiles/print.dir/sources/print.cpp.o
+In file included from /home/zhenya/ZhenyaBukov/workspace/projects/lab06/sources/print.cpp:2:
+/home/zhenya/ZhenyaBukov/workspace/projects/lab06/include/print.hpp:6:6: error: default argument given for parameter 2 of ‘void print(const std::string&, std::ostream&)’ [-fpermissive]
+    6 | void print(const std::string& text, std::ostream& out = std::cout);
+      |      ^~~~~
+In file included from /home/zhenya/ZhenyaBukov/workspace/projects/lab06/sources/print.cpp:1:
+/home/zhenya/ZhenyaBukov/workspace/projects/lab06/include/print.hpp:6:6: note: previous specification in ‘void print(const std::string&, std::ostream&)’ here
+    6 | void print(const std::string& text, std::ostream& out = std::cout);
+      |      ^~~~~
+gmake[2]: *** [CMakeFiles/print.dir/build.make:76: CMakeFiles/print.dir/sources/print.cpp.o] Ошибка 1
+gmake[1]: *** [CMakeFiles/Makefile2:83: CMakeFiles/print.dir/all] Ошибка 2
+gmake: *** [Makefile:156: all] Ошибка 2
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ mkdir artifacts
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ mv _build/*.tar.gz artifacts
+mv: не удалось выполнить stat для '_build/*.tar.gz': Нет такого файла или каталога
+zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lzzzzzhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ 
 
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git push origin master
-error: src refspec master ничему не соответствует
-error: не удалось отправить некоторые ссылки в «github.com:ZhenyaBukov/lab06.git»
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git push origin main
-To github.com:ZhenyaBukov/lab06.git
- ! [rejected]        main -> main (fetch first)
-error: не удалось отправить некоторые ссылки в «github.com:ZhenyaBukov/lab06.git»
-подсказка: Updates were rejected because the remote contains work that you do not
-подсказка: have locally. This is usually caused by another repository pushing to
-подсказка: the same ref. If you want to integrate the remote changes, use
-подсказка: 'git pull' before pushing again.
-подсказка: See the 'Note about fast-forwards' in 'git push --help' for details.
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git push -f origin main
-Перечисление объектов: 2953, готово.
-Подсчет объектов: 100% (2953/2953), готово.
-При сжатии изменений используется до 2 потоков
-Сжатие объектов: 100% (2251/2251), готово.
-Запись объектов: 100% (2953/2953), 13.46 МиБ | 3.63 МиБ/с, готово.
-Всего 2953 (изменений 529), повторно использовано 2948 (изменений 528), повторно использовано пакетов 0
-remote: Resolving deltas: 100% (529/529), done.
-remote: error: GH013: Repository rule violations found for refs/heads/main.
-remote: 
-remote: - GITHUB PUSH PROTECTION
-remote:   —————————————————————————————————————————
-remote:     Resolve the following violations before pushing again
-remote: 
-remote:     - Push cannot contain secrets
-remote: 
-remote:     
-remote:      (?) Learn how to resolve a blocked push
-remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push
-remote:     
-remote:     
-remote:       —— GitHub Personal Access Token ——————————————————————
-remote:        locations:
-remote:          - commit: d9761b6860846de6c653a920d82595366474a101
-remote:            path: README.md:2
-remote:     
-remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
-remote:        https://github.com/ZhenyaBukov/lab06/security/secret-scanning/unblock-secret/2xYWxpTa863ENgTEzXwGh9N9kHj
-remote:     
-remote:     
-remote:       —— GitHub Personal Access Token ——————————————————————
-remote:        locations:
-remote:          - commit: c71fea93dbceb60601f9d9cc6175713b8e8fa5ba
-remote:            path: README.md:3
-remote:     
-remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
-remote:        https://github.com/ZhenyaBukov/lab06/security/secret-scanning/unblock-secret/2xYWxrzsPQL6YiDDfX8neRfLaLd
-remote:     
-remote: 
-remote: 
-To github.com:ZhenyaBukov/lab06.git
- ! [remote rejected] main -> main (push declined due to repository rule violations)
-error: не удалось отправить некоторые ссылки в «github.com:ZhenyaBukov/lab06.git»
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git push -f origin main
-Перечисление объектов: 2953, готово.
-Подсчет объектов: 100% (2953/2953), готово.
-При сжатии изменений используется до 2 потоков
-Сжатие объектов: 100% (2251/2251), готово.
-Запись объектов: 100% (2953/2953), 13.46 МиБ | 3.91 МиБ/с, готово.
-Всего 2953 (изменений 529), повторно использовано 2948 (изменений 528), повторно использовано пакетов 0
-remote: Resolving deltas: 100% (529/529), done.
-remote: error: GH013: Repository rule violations found for refs/heads/main.
-remote: 
-remote: - GITHUB PUSH PROTECTION
-remote:   —————————————————————————————————————————
-remote:     Resolve the following violations before pushing again
-remote: 
-remote:     - Push cannot contain secrets
-remote: 
-remote:     
-remote:      (?) Learn how to resolve a blocked push
-remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push
-remote:     
-remote:     
-remote:       —— GitHub Personal Access Token ——————————————————————
-remote:        locations:
-remote:          - commit: d9761b6860846de6c653a920d82595366474a101
-remote:            path: README.md:2
-remote:     
-remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
-remote:        https://github.com/ZhenyaBukov/lab06/security/secret-scanning/unblock-secret/2xYWxpTa863ENgTEzXwGh9N9kHj
-remote:     
-remote: 
-remote: 
-To github.com:ZhenyaBukov/lab06.git
- ! [remote rejected] main -> main (push declined due to repository rule violations)
-error: не удалось отправить некоторые ссылки в «github.com:ZhenyaBukov/lab06.git»
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$  git push -f origin main
-Перечисление объектов: 2953, готово.
-Подсчет объектов: 100% (2953/2953), готово.
-При сжатии изменений используется до 2 потоков
-Сжатие объектов: 100% (2251/2251), готово.
-Запись объектов: 100% (2953/2953), 13.46 МиБ | 3.34 МиБ/с, готово.
-Всего 2953 (изменений 529), повторно использовано 2948 (изменений 528), повторно использовано пакетов 0
-remote: Resolving deltas: 100% (529/529), done.
-To github.com:ZhenyaBukov/lab06.git
- + 55b3f1d...28a5b67 main -> main (forced update)
-zhenya@zhenya-VirtualBox:~/ZhenyaBukov/workspace/projects/lab06$ git push origin main
-Everything up-to-date
